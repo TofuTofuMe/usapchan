@@ -1,0 +1,38 @@
+<table
+    class="border-collapse border-2 border-black w-full text-center"
+    id="<%= table %>"
+>
+    <% if (table == 'course') { %>
+    <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Code</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody id="course-table-body"></tbody>
+    <% }; %> <% if (table == 'faculty') { %>
+    <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Nickname</th>
+            <th>Schedule</th>
+        </tr>
+    </thead>
+    <tbody id="faculty-table-body"></tbody>
+    <% }; %> <% if (table == 'schedule') { %>
+    <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Faculty Name</th>
+            <th>Course</th>
+        </tr>
+    </thead>
+    <tbody id="schedule-table-body"></tbody>
+    <% }; %>
+</table>

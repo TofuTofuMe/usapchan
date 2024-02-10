@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title><%= college_name %> - College</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link type="text/css" rel="stylesheet" href="/style.css" />
+        <script src="/index.js"></script>
+        <script src="/collegeScript.js"></script>
+    </head>
+    <body>
+        <%- include('navbar.ejs') %>
+        <div
+            class="mx-auto flex-row rounded border-2 border-black w-auto ml-4 mr-4 my-4 p-4"
+        >
+            <p class="text-black font-medium">College Management</p>
+            <div class="flex-row mx-2 w-auto">
+                <p class="text-black font-medium">Form</p>
+                <%- include('form.ejs') %>
+                <p class="text-black font-medium">Courses</p>
+                <%- include('table.ejs', {table: 'course'}) %>
+                <p class="text-black font-medium">Faculty</p>
+                <%- include('table.ejs', {table: 'faculty'}) %>
+                <p class="text-black font-medium">Schedule</p>
+                <%- include('table.ejs', {table: 'schedule'}) %>
+            </div>
+        </div>
+    </body>
+    <script></script>
+</html>

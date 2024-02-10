@@ -1,0 +1,232 @@
+<div class="flex-col columns-3 border-2 border-black my-2 p-2">
+    <div class="break-inside-avoid">
+        <form action="/college/add_course" method="post" id="courseForm">
+            <p class="font-bold">Manage Courses</p>
+            <div>
+                <label class="text-black">Course ID</label>
+                <select
+                    name="course_selected"
+                    id="courseSelect"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="new">Add New</option>
+                </select>
+            </div>
+            <div hidden>
+                <input type="text" name="id" id="id" />
+            </div>
+            <div>
+                <label class="text-black">Code</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="code"
+                    id="code"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Title</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="title"
+                    id="title"
+                    required
+                />
+            </div>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetCourse"
+                />
+                <button
+                    type="submit"
+                    id="submitCourse"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Submit
+                </button>
+                <button
+                    type="submit"
+                    id="dropCourse"
+                    formaction="drop_course"
+                    disabled
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="break-inside-avoid">
+        <form action="/college/add_faculty" method="post" id="facultyForm">
+            <p class="font-bold">Manage Faculty</p>
+            <div>
+                <label class="text-black">Faculty ID</label>
+                <select
+                    name="faculty_selected"
+                    id="facultySelect"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="new">Add New</option>
+                </select>
+            </div>
+            <div hidden>
+                <input type="text" name="id" id="id" />
+            </div>
+            <div>
+                <label class="text-black">Rank</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="rank"
+                    id="rank"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Name</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="name"
+                    id="name"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Nickname</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="nickname"
+                    id="nickname"
+                />
+            </div>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetFaculty"
+                />
+                <button
+                    type="submit"
+                    id="submitFaculty"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Submit
+                </button>
+                <button
+                    type="submit"
+                    id="dropFaculty"
+                    formaction="drop_faculty"
+                    disabled
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="break-inside-avoid">
+        <form action="/college/add_schedule" method="post" id="scheduleForm">
+            <p class="font-bold">Manage Schedule</p>
+            <div>
+                <label class="text-black">Schedule ID</label>
+                <select
+                    name="schedule_selected"
+                    id="scheduleSelect"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="new">Add New</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Day</label>
+                <select
+                    name="day"
+                    id="day"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                    required
+                >
+                    <option value="">------</option>
+                    <% const days = ['Monday', 'Tuesday', 'Wednesday',
+                    'Thursday', 'Friday', 'Saturday', 'Sunday']; %> <%
+                    days.forEach(day => { %>
+                    <option value="<%= day %>"><%= day %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Course</label>
+                <select
+                    name="courseCode"
+                    id="courseCode"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                    required
+                >
+                    <option value="">------</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Faculty</label>
+                <select
+                    name="facultyName"
+                    id="facultyName"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                    required
+                >
+                    <option value="">------</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Start Time</label>
+                <input
+                    type="time"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    id="startTime"
+                    name="startTime"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">End Time</label>
+                <input
+                    type="time"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    id="endTime"
+                    name="endTime"
+                    required
+                />
+            </div>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetSchedule"
+                />
+                <button
+                    type="submit"
+                    id="submitSchedule"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Submit
+                </button>
+                <button
+                    type="submit"
+                    id="dropSchedule"
+                    formaction="drop_schedule"
+                    disabled
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
