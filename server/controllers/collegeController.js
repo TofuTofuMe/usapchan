@@ -124,10 +124,11 @@ exports.getSchedules = async (req, res) => {
 
 exports.dropCourse = async (req, res) => {
     try {
-        const {code, title} = req.body;
+        const {courseId, code, title} = req.body;
 
         const course = await Course.findOne({
             where: {
+                id: courseId,
                 code: code,
                 title: title,
             },
@@ -152,10 +153,11 @@ exports.dropCourse = async (req, res) => {
 
 exports.dropFaculty = async (req, res) => {
     try {
-        const {rank, name} = req.body;
+        const {facultyId, rank, name} = req.body;
 
         const faculty = await Faculty.findOne({
             where: {
+                id: facultyId,
                 rank: rank,
                 name: name,
             },
@@ -180,15 +182,16 @@ exports.dropFaculty = async (req, res) => {
 
 exports.dropSchedule = async (req, res) => {
     try {
-        const {day, startTime, endTime, facultyId, courseId} = req.body;
+        const {scheduleId, day, room, section, startTime, endTime} = req.body;
 
         const schedule = await Schedule.findOne({
             where: {
+                id: scheduleId,
                 day: day,
                 startTime: startTime,
                 endTime: endTime,
-                facultyId: facultyId,
-                courseId: courseId,
+                room: room,
+                section: section,
             },
         });
 
