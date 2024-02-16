@@ -39,12 +39,20 @@ exports.addFaculty = async (req, res) => {
 
 exports.addSchedule = async (req, res) => {
     try {
-        const {day, startTime, endTime, courseCode, facultyName} = req.body;
-
-        console.log({day, startTime, endTime, courseCode, facultyName});
+        const {
+            day,
+            room,
+            section,
+            startTime,
+            endTime,
+            courseCode,
+            facultyName,
+        } = req.body;
 
         await Schedule.create({
             day,
+            room,
+            section,
             startTime,
             endTime,
             facultyName,
@@ -96,13 +104,14 @@ exports.getSchedules = async (req, res) => {
             attributes: [
                 'id',
                 'day',
+                'room',
+                'section',
                 'startTime',
                 'endTime',
                 'facultyName',
                 'courseCode',
             ],
         });
-
         res.status(200).send(schedules);
     } catch (error) {
         res.status(500).json({
@@ -130,9 +139,7 @@ exports.dropCourse = async (req, res) => {
                 message: 'Course not found',
             });
         }
-
         await course.destroy();
-
         res.status(200).redirect('/college/manage');
     } catch (error) {
         res.status(500).json({
@@ -160,9 +167,7 @@ exports.dropFaculty = async (req, res) => {
                 message: 'Faculty not found',
             });
         }
-
         await faculty.destroy();
-
         res.status(200).redirect('/college/manage');
     } catch (error) {
         res.status(500).json({
@@ -193,9 +198,7 @@ exports.dropSchedule = async (req, res) => {
                 message: 'Schedule not found',
             });
         }
-
         await schedule.destroy();
-
         res.status(200).redirect('/college/manage');
     } catch (error) {
         res.status(500).json({

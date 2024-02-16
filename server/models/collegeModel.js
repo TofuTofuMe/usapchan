@@ -50,6 +50,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        room: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        section: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         startTime: {
             type: DataTypes.TIME,
             allowNull: false,
