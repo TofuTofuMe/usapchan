@@ -28,6 +28,12 @@ collegeRouter.post('/add_faculty', collegeController.addFaculty);
 
 collegeRouter.post('/add_schedule', collegeController.addSchedule);
 
+collegeRouter.post('/update_course', collegeController.updateCourse);
+
+collegeRouter.post('/update_faculty', collegeController.updateFaculty);
+
+collegeRouter.post('/update_schedule', collegeController.updateSchedule);
+
 collegeRouter.post('/drop_course', collegeController.dropCourse);
 
 collegeRouter.post('/drop_faculty', collegeController.dropFaculty);

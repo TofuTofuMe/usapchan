@@ -68,6 +68,71 @@ exports.addSchedule = async (req, res) => {
     }
 };
 
+exports.updateCourse = async (req, res) => {
+    try {
+        const {courseId, code, title} = req.body;
+
+        await Course.update(
+            {id: courseId, code: code, title: title},
+            {
+                where: {
+                    id: courseId,
+                },
+            }
+        );
+        res.status(200).redirect('/college/manage');
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error updating course',
+            error: error.message,
+        });
+    }
+};
+
+exports.updateFaculty = async (req, res) => {
+    try {
+        const {facultyId, rank, name, nickname, schedule} = req.body;
+
+        await Faculty.update(
+            {rank: rank, name: name, nickname: nickname, schedule: schedule},
+            {where: {id: facultyId}}
+        );
+        res.status(200).redirect('/college/manage');
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error updating faculty',
+            error: error.message,
+        });
+    }
+};
+
+exports.updateSchedule = async (req, res) => {
+    try {
+        const {scheduleId, day, room, section, startTime, endTime} = req.body;
+
+        await Schedule.update(
+            {
+                id: scheduleId,
+                day: day,
+                room: room,
+                section: section,
+                startTime: startTime,
+                endTime: endTime,
+            },
+            {where: {id: scheduleId}}
+        );
+        res.status(200).redirect('/college/manage');
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error updating schedule',
+            error: error.message,
+        });
+    }
+};
+
 exports.getCourses = async (req, res) => {
     try {
         const courses = await Course.findAll({
