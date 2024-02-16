@@ -71,7 +71,7 @@ exports.addSchedule = async (req, res) => {
 exports.getCourses = async (req, res) => {
     try {
         const courses = await Course.findAll({
-            attributes: ['id', 'code', 'title'],
+            attributes: [['id', 'courseId'], 'code', 'title'],
         });
         res.status(200).send(courses);
     } catch (error) {
@@ -86,7 +86,7 @@ exports.getCourses = async (req, res) => {
 exports.getFaculties = async (req, res) => {
     try {
         const faculties = await Faculty.findAll({
-            attributes: ['id', 'rank', 'name', 'nickname'],
+            attributes: [['id', 'facultyId'], 'rank', 'name', 'nickname'],
         });
         res.status(200).send(faculties);
     } catch (error) {
@@ -102,7 +102,7 @@ exports.getSchedules = async (req, res) => {
     try {
         const schedules = await Schedule.findAll({
             attributes: [
-                'id',
+                ['id', 'scheduleId'],
                 'day',
                 'room',
                 'section',
