@@ -1,19 +1,21 @@
 fetchTableData('Courses').then(() => {
     setupTable('Courses', '#course-table-body').then(() => {
-        setupSelectorOptions('courseSelect', 'Courses', 'code');
+        setupSelectorOptions('courseSelect', 'Courses', 'courseId');
         handleSelectorChange(
             'courseSelect',
-            ['code', 'title'],
-            'code',
+            ['courseId', 'code', 'title'],
+            'courseId',
+            'submitCourse',
             'dropCourse'
         );
         setFormAction(
             'courseSelect',
             'resetCourse',
+            'submitCourse',
             'dropCourse',
             'courseForm',
             'add_course',
-            'drop_course'
+            'update_course'
         );
     });
 });
@@ -23,39 +25,52 @@ fetchTableData('Faculties').then(() => {
         setupSelectorOptions('facultySelect', 'Faculties', 'name');
         handleSelectorChange(
             'facultySelect',
-            ['rank', 'name', 'nickname'],
-            'name',
+            ['facultyId', 'rank', 'name', 'nickname'],
+            'facultyId',
+            'submitFaculty',
             'dropFaculty'
         );
         setFormAction(
             'facultySelect',
             'resetFaculty',
+            'submitFaculty',
             'dropFaculty',
             'facultyForm',
             'add_faculty',
-            'drop_faculty'
+            'update_faculty'
         );
     });
 });
 
 fetchTableData('Schedules').then(() => {
     setupTable('Schedules', '#schedule-table-body').then(() => {
-        setupSelectorOptions('scheduleSelect', 'Schedules', 'id');
+        setupSelectorOptions('scheduleSelect', 'Schedules', 'scheduleId');
         setupSelectorOptions('courseCode', 'Courses', 'code');
         setupSelectorOptions('facultyName', 'Faculties', 'name');
         handleSelectorChange(
             'scheduleSelect',
-            ['day', 'startTime', 'endTime', 'facultyName', 'courseCode'],
-            'id',
+            [
+                'scheduleId',
+                'day',
+                'startTime',
+                'room',
+                'section',
+                'endTime',
+                'facultyName',
+                'courseCode',
+            ],
+            'scheduleId',
+            'submitSchedule',
             'dropSchedule'
         );
         setFormAction(
             'scheduleSelect',
             'resetSchedule',
+            'submitSchedule',
             'dropSchedule',
             'scheduleForm',
             'add_schedule',
-            'drop_schedule'
+            'update_schedule'
         );
     });
 });

@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div hidden>
-                <input type="text" name="id" id="id" />
+                <input type="text" name="courseId" id="courseId" />
             </div>
             <div>
                 <label class="text-black">Code</label>
@@ -75,7 +75,7 @@
                 </select>
             </div>
             <div hidden>
-                <input type="text" name="id" id="id" />
+                <input type="text" name="facultyId" id="facultyId" />
             </div>
             <div>
                 <label class="text-black">Rank</label>
@@ -145,6 +145,9 @@
                     <option value="new">Add New</option>
                 </select>
             </div>
+            <div hidden>
+                <input type="text" name="scheduleId" id="scheduleId" />
+            </div>
             <div>
                 <label class="text-black">Day</label>
                 <select
@@ -167,7 +170,6 @@
                     name="courseCode"
                     id="courseCode"
                     class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
-                    required
                 >
                     <option value="">------</option>
                 </select>
@@ -178,10 +180,29 @@
                     name="facultyName"
                     id="facultyName"
                     class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
-                    required
                 >
                     <option value="">------</option>
                 </select>
+            </div>
+            <div>
+                <label class="text-black">Room</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="room"
+                    id="room"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Section</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="section"
+                    id="section"
+                    required
+                />
             </div>
             <div>
                 <label class="text-black">Start Time</label>

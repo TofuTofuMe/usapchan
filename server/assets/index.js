@@ -47,9 +47,6 @@ async function setupTable(tableId, tableBodyId) {
             for (const data in entry) {
                 const tableData = document.createElement('td');
                 tableData.setAttribute('id', `${data}-${dataRow}`);
-                if (data == 'id') {
-                    tableData.hidden = true;
-                }
                 tableData.textContent = entry[data];
                 tableRow.appendChild(tableData);
             }
@@ -80,11 +77,13 @@ function handleSelectorChange(
     selectorId,
     formFieldIds,
     referenceFieldId,
+    submitButtonId,
     dropButtonId
 ) {
     try {
         const selector = document.getElementById(selectorId);
         const referenceField = document.getElementById(referenceFieldId);
+        const submitButton = document.getElementById(submitButtonId);
         const dropButton = document.getElementById(dropButtonId);
 
         selector.addEventListener('change', () => {
@@ -101,9 +100,11 @@ function handleSelectorChange(
             });
 
             if (selector.value !== 'new') {
+                submitButton.textContent = 'Update';
                 referenceField.readOnly = true;
                 dropButton.disabled = false;
             } else {
+                submitButton.textContent = 'Submit';
                 referenceField.readOnly = false;
                 dropButton.disabled = true;
             }
@@ -116,6 +117,7 @@ function handleSelectorChange(
 function setFormAction(
     selectorId,
     resetButtonId,
+    submitButtonId,
     dropButtonId,
     formId,
     addUrl,
@@ -123,6 +125,7 @@ function setFormAction(
 ) {
     const selector = document.getElementById(selectorId);
     const resetButton = document.getElementById(resetButtonId);
+    const submitButton = document.getElementById(submitButtonId);
     const dropButton = document.getElementById(dropButtonId);
     const form = document.getElementById(formId);
 
@@ -143,6 +146,7 @@ function setFormAction(
     resetButton.addEventListener('click', () => {
         selector.value = 'new';
         form.action = addUrl;
+        submitButton.textContent = 'Submit';
         dropButton.disabled = true;
     });
 }
