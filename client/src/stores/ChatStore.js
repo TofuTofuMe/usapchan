@@ -7,16 +7,17 @@ const storage = createJSONStorage(() => AsyncStorage);
 const textInputAtom = atom('');
 const textOutputAtom = atom('');
 const messagesAtom = atomWithStorage(
-  'messages',
-  [
-    {
-      id: Date.now() + Math.random().toString(),
-      text: 'Hi! How can Usapchan you?',
-      user: false,
-      attachment: false,
-    },
-  ],
-  storage,
+    'messages',
+    [
+        {
+            id: Date.now() + Math.random().toString(),
+            text: 'Hi! How can Usapchan you?',
+            user: false,
+            attachment: false,
+        },
+    ],
+    storage,
 );
+const showIntroAtom = atom(true);
 
-export {textInputAtom, textOutputAtom, messagesAtom};
+export {textInputAtom, textOutputAtom, messagesAtom, showIntroAtom};

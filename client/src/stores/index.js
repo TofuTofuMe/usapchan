@@ -1,5 +1,10 @@
 import {settingsAtom, modalAtom} from './SettingStore';
-import {textInputAtom, textOutputAtom, messagesAtom} from './ChatStore';
+import {
+    textInputAtom,
+    textOutputAtom,
+    messagesAtom,
+    showIntroAtom,
+} from './ChatStore';
 import {showBodyAtom, imageIndexAtom} from './HomeStore';
 
 export {
@@ -8,6 +13,7 @@ export {
     textInputAtom,
     textOutputAtom,
     messagesAtom,
+    showIntroAtom,
     showBodyAtom,
     imageIndexAtom,
 };
