@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, Image, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView} from 'react-native';
 import HomeStyle from '../styles/HomeStyle';
-import {HomeHighlight, Carousel} from '../components';
+import {HomeHighlight, Carousel, HomeBanner} from '../components';
 
 const images = [
     require('../assets/carousel1.jpg'),
@@ -14,13 +14,18 @@ const images = [
 const HomeScreen = () => {
     return (
         <ScrollView style={HomeStyle.flexView}>
-            <View>
-                <Image
-                    style={HomeStyle.headerImage}
-                    source={require('../assets/homeBanner.png')}
-                />
-            </View>
-            <View style={HomeStyle.announcementView}>
+            <HomeBanner
+                banner={{
+                    textOne: 'Hello college student',
+                    textTwo: 'Your college companion is here!',
+                }}
+            />
+            <View
+                style={{
+                    marginTop: 10,
+                    padding: 10,
+                }}
+            >
                 <View style={{flexDirection: 'row', padding: 5}}>
                     <Text style={HomeStyle.announcementText}>Announcement</Text>
                 </View>

@@ -4,6 +4,7 @@ import {material, robotoWeights} from 'react-native-typography';
 const HomeStyle = StyleSheet.create({
     flexView: {
         flex: 1,
+        backgroundColor: '#e2e2e2',
     },
     headerImage: {
         width: '100%',
@@ -20,8 +21,11 @@ const HomeStyle = StyleSheet.create({
         width: '100%',
         height: 250,
     },
-    announcementView: {
-        padding: 10,
+    announcementContent: {
+        ...material.body2,
+        flex: 1,
+        width: '100%',
+        paddingBottom: 15,
     },
     announcementText: {
         alignItems: 'center',
@@ -31,13 +35,6 @@ const HomeStyle = StyleSheet.create({
         ...material.body2,
         fontSize: 22,
         fontWeight: 'normal',
-    },
-    announcementContent: {
-        ...material.body2,
-        flex: 1,
-        padding: 0,
-        shadowColor: '#171717',
-        width: '100%',
     },
     announcementImage: {
         width: '100%',
@@ -117,6 +114,25 @@ const HomeStyle = StyleSheet.create({
     },
     paginationDotActive: {
         backgroundColor: '#000',
+    },
+    bannerView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    banner: {
+        flex: 1,
+        width: '100%',
+        height: 250,
+    },
+    textView: {
+        position: 'absolute',
+        alignItems: 'center',
+    },
+    bannerText: {
+        flex: 1,
+        color: 'white',
+        fontSize: 18,
     },
 });
 
