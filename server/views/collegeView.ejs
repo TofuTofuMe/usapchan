@@ -15,7 +15,7 @@
             <p class="text-black font-medium">College Management</p>
             <div class="flex-row mx-2 w-auto">
                 <p class="text-black font-medium">Form</p>
-                <%- include('form.ejs') %>
+                <%- include('form.ejs', {form: 'college'}) %>
                 <p class="text-black font-medium">Courses</p>
                 <%- include('table.ejs', {table: 'course'}) %>
                 <p class="text-black font-medium">Faculty</p>

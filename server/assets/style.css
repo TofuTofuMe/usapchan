@@ -538,6 +538,10 @@ video {
 .border-collapse {
   border-collapse: collapse;
 }
+.columns-2 {
+  -moz-columns: 2;
+       columns: 2;
+}
 .columns-3 {
   -moz-columns: 3;
        columns: 3;
@@ -545,6 +549,14 @@ video {
 .break-inside-avoid {
   -moz-column-break-inside: avoid;
        break-inside: avoid;
+}
+.break-inside-avoid-column {
+  -moz-column-break-inside: avoid;
+       break-inside: avoid-column;
+}
+.break-after-auto {
+  -moz-column-break-after: auto;
+       break-after: auto;
 }
 .flex-row {
   flex-direction: row;

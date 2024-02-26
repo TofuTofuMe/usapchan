@@ -1,3 +1,4 @@
+<% if (form == 'college') { %>
 <div class="flex-col columns-3 border-2 border-black my-2 p-2">
     <div class="break-inside-avoid">
         <form action="/college/add_course" method="post" id="courseForm">
@@ -251,3 +252,123 @@
         </form>
     </div>
 </div>
+<% }; %> <% if (form == 'chat') { %>
+<div class="flex-col columns-3 border-2 border-black my-2 p-2">
+    <div class="break-inside-avoid-column">
+        <form action="/chat/add_corpus" method="post" id="chatForm">
+            <p class="font-bold">Manage Queries and Answers Corpus</p>
+            <div>
+                <label class="text-black">Corpus ID</label>
+                <select
+                    name="corpus_selected"
+                    id="corpusSelect"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="new">Add New</option>
+                </select>
+            </div>
+            <div hidden>
+                <input type="text" name="corpusId" id="corpusId" />
+            </div>
+            <div>
+                <label class="text-black">Language</label>
+                <select
+                    name="lang"
+                    id="lang"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="en">EN</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Intent</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="intent"
+                    id="intent"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Query</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="query"
+                    id="query"
+                    required
+                />
+            </div>
+            <div>
+                <label class="text-black">Answer</label>
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="answer"
+                    id="answer"
+                    required
+                />
+            </div>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetCorpus"
+                />
+                <button
+                    type="submit"
+                    id="submitCorpus"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Submit
+                </button>
+                <button
+                    type="submit"
+                    id="dropCorpus"
+                    formaction="drop_corpus"
+                    disabled
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="break-inside-avoid-column">
+        <form id="testChatForm">
+            <label class="text-black">Test Query</label> <br />
+            <textarea
+                class="w-auto rounded-md ring-black ring-1 m-2"
+                name="message"
+                id="message"
+            ></textarea>
+            <br />
+            <label class="text-black">Response</label> <br />
+            <textarea
+                class="w-auto rounded-md ring-black ring-1 m-2"
+                name="response"
+                id="response"
+                readonly
+                disabled
+            ></textarea>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetTestChat"
+                />
+                <button
+                    type="button"
+                    id="sendChat"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Send
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<% }; %>

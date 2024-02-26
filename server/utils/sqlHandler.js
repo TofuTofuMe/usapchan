@@ -2,6 +2,7 @@ const {Sequelize, DataTypes} = require('sequelize');
 
 const collegeModel = require('../models/collegeModel');
 const forumModel = require('../models/forumModel');
+const chatModel = require('../models/chatModel');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -11,6 +12,7 @@ const sequelize = new Sequelize({
 
 const {Course, Faculty, Schedule} = collegeModel(sequelize, DataTypes);
 const {Post, Comment} = forumModel(sequelize, DataTypes);
+const {Corpus} = chatModel(sequelize, DataTypes);
 
 const initDb = async () => {
     try {
@@ -19,7 +21,7 @@ const initDb = async () => {
         await sequelize.sync();
         console.log('Tables synced.');
     } catch (error) {
-        console.error('Error connecting to database: ', error);
+        console.error('Error connecting to database: ', error.message);
     }
 };
 
@@ -30,4 +32,5 @@ module.exports = {
     Schedule,
     Post,
     Comment,
+    Corpus,
 };

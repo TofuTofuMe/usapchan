@@ -14,6 +14,11 @@ async function fetchTableData(tableId) {
                     method: 'GET',
                 });
                 break;
+            case 'Corpus':
+                request = new Request('/chat/list_corpus', {
+                    method: 'GET',
+                });
+                break;
             default:
                 reject(new Error('Invalid table ID given'));
                 break;
@@ -151,11 +156,24 @@ function setFormAction(
     });
 }
 
-function addEventListener(elementId, eventType) {
+function setupChat(chatBoxId, sendButtonId, replyBoxId) {
     try {
-        const element = document.getElementById(elementId);
-        element.addEventListener(eventType, () => {});
+        const chatBox = document.getElementById(chatBoxId);
+        const sendButton = document.getElementById(sendButtonId);
+        const replyBox = document.getElementById(replyBoxId);
+
+        sendButton.addEventListener('click', () => {
+            fetch('/chat/send_chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: chatBox.value}),
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    replyBox.value = res.answer ? res.answer : 'No answer';
+                });
+        });
     } catch (error) {
-        console.error('Error adding event listener', error);
+        console.error('Error setting up chat behaviour: ', error.message);
     }
 }
