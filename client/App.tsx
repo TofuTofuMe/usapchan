@@ -28,9 +28,24 @@ const Drawer = () => {
             <DrawerNav.Screen
                 name="DrawerHome"
                 component={HomeScreen}
-        options={{title: 'Home'}}
+                options={{
+                    title: 'Home',
+                    headerStyle: {
+                        backgroundColor: '#526d51',
+                    },
+                    headerTintColor: 'white',
+                }}
             />
-      <DrawerNav.Screen name="Handbook" component={HandbookScreen} />
+            <DrawerNav.Screen
+                name="Handbook"
+                component={HandbookScreen}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#526d51',
+                    },
+                    headerTintColor: 'white',
+                }}
+            />
             {/* <DrawerNav.Screen name="Settings" component={SettingScreen} /> */}
         </DrawerNav.Navigator>
     );
@@ -38,7 +53,15 @@ const Drawer = () => {
 
 const Tab = () => {
     return (
-    <BottomTab.Navigator>
+        <BottomTab.Navigator
+            screenOptions={{
+                tabBarActiveBackgroundColor: 'rgba(0,0,0,.1)',
+                tabBarInactiveBackgroundColor: 'white',
+                tabBarStyle: {
+                    backgroundColor: 'white',
+                },
+            }}
+        >
             <BottomTab.Screen
                 name="TabHome"
                 component={Drawer}
@@ -46,7 +69,9 @@ const Tab = () => {
                     title: 'Home',
                     headerShown: false,
                     tabBarLabel: () => null,
-          tabBarIcon: () => <Feather name="home" size={25} color="black" />,
+                    tabBarIcon: () => (
+                        <Feather name="home" size={25} color={'black'} />
+                    ),
                 }}
             />
             <BottomTab.Screen
@@ -55,8 +80,16 @@ const Tab = () => {
                 options={{
                     tabBarLabel: () => null,
                     tabBarIcon: () => (
-            <Feather name="message-square" size={25} color="black" />
+                        <Feather
+                            name="message-square"
+                            size={25}
+                            color={'black'}
+                        />
                     ),
+                    headerStyle: {
+                        backgroundColor: '#526d51',
+                    },
+                    headerTintColor: 'white',
                 }}
             />
             <BottomTab.Screen
@@ -65,7 +98,13 @@ const Tab = () => {
                 options={{
                     title: 'Forum',
                     tabBarLabel: () => null,
-          tabBarIcon: () => <Feather name="edit" size={25} color="black" />,
+                    tabBarIcon: () => (
+                        <Feather name="edit" size={25} color={'black'} />
+                    ),
+                    headerStyle: {
+                        backgroundColor: '#526d51',
+                    },
+                    headerTintColor: 'white',
                 }}
             />
         </BottomTab.Navigator>

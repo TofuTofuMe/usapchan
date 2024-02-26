@@ -196,9 +196,9 @@ const Style = StyleSheet.create({
         lineHeight: 30,
     },
     chatMascot: {
-        width: '70%',
+        width: '100%',
         resizeMode: 'contain',
-        marginTop: -100,
+        marginTop: -300,
     },
     bottom: {
         flex: 1,

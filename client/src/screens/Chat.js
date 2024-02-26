@@ -30,7 +30,7 @@ const ChatScreen = () => {
         <View style={Style.flexView}>
             {showIntro && (
                 <View style={Style.body}>
-                    <View style={Style.bodyContent}>
+                    <View style={{flexDirection: 'row', flex: 1}}>
                         <Text style={Style.bodyText}>
                             Hi Student, Usapchan is here! Your college life
                             companion.
@@ -44,7 +44,7 @@ const ChatScreen = () => {
                 </View>
             )}
             <ScrollView style={Style.bodyView}>
-                {messages.map(msg => (
+                {messages.map((msg) => (
                     <ChatBubble key={msg.id} text={msg.text} user={msg.user} />
                 ))}
             </ScrollView>
@@ -56,7 +56,7 @@ const ChatScreen = () => {
                         multiline
                         value={textInput}
                         placeholder="Ask a question"
-                        onChangeText={newTextInput =>
+                        onChangeText={(newTextInput) =>
                             setTextInput(newTextInput)
                         }
                     />
@@ -78,7 +78,7 @@ const ChatScreen = () => {
                                 textInput,
                                 setTextOutput,
                                 addMessage,
-                                setMessages,
+                                setMessages
                             );
                             setTextInput('');
                             addMessage(setMessages, {
@@ -86,7 +86,8 @@ const ChatScreen = () => {
                                 user: false,
                             });
                             setShowIntro(false);
-                        }}>
+                        }}
+                    >
                         <Feather name="send" size={25} color="black" />
                     </Pressable>
                 </View>
