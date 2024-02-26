@@ -30,15 +30,5 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    Post.hasMany(Comment, {
-        as: 'comments',
-        sourceKey: 'id',
-        foreignKey: {name: 'postId', type: DataTypes.STRING},
-    });
-    Comment.belongsTo(Post, {
-        targetKey: 'id',
-        foreignKey: {name: 'postId', type: DataTypes.STRING},
-    });
-
     return {Post, Comment};
 };

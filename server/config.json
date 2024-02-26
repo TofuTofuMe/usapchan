@@ -1,4 +1,8 @@
 {
     "collegeName": "College Name",
     "collegeLogo": "logo.png",
+
+    "jwtSecret": "",
+    "jwtExpiry": "365d",
+    "bcryptSaltRounds": 10
 }

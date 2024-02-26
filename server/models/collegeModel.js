@@ -68,24 +68,5 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    Faculty.hasMany(Schedule, {
-        as: 'schedules',
-        sourceKey: 'name',
-        foreignKey: {name: 'facultyName', type: DataTypes.STRING},
-    });
-    Schedule.belongsTo(Faculty, {
-        targetKey: 'name',
-        foreignKey: {name: 'facultyName', type: DataTypes.STRING},
-    });
-    Schedule.belongsTo(Course, {
-        targetKey: 'code',
-        foreignKey: {name: 'courseCode', type: DataTypes.STRING},
-    });
-    Course.hasMany(Schedule, {
-        as: 'schedules',
-        sourceKey: 'code',
-        foreignKey: {name: 'courseCode', type: DataTypes.STRING},
-    });
-
     return {Course, Faculty, Schedule};
 };

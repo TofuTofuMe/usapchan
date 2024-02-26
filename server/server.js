@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.use('/college', require(routes + 'collegeRouter'));
 app.use('/forum', require(routes + 'forumRouter'));
 app.use('/chat', require(routes + 'chatRouter'));
+app.use('/user', require(routes + 'userRouter'));
 
 app.use(express.static(assets));
 app.use(express.static(assets + 'images'));
