@@ -12,7 +12,7 @@ routes = __dirname + '/routes/';
 assets = __dirname + '/assets/';
 
 app.get('/', (req, res) => {
-    res.render('index.ejs', {college_name: config.college_name});
+    res.render('index.ejs', {collegeName: config.collegeName});
 });
 
 app.use('/college', require(routes + 'collegeRouter'));

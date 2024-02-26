@@ -14,7 +14,7 @@ chatRouter.get('/', (req, res) => {
 });
 
 chatRouter.get('/manage', (req, res) => {
-    res.render('chatView.ejs', {college_name: config.college_name});
+    res.render('chatView.ejs', {collegeName: config.collegeName});
 });
 
 chatRouter.get('/list_corpus', chatController.getCorpus);

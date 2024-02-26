@@ -14,7 +14,7 @@ forumRouter.get('/', (req, res) => {
 
 forumRouter.get('/manage', (req, res) => {
     res.render('forumView.ejs', {
-        college_name: config.college_name,
+        collegeName: config.collegeName,
         table: 'forum',
     });
 });

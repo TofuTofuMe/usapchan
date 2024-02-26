@@ -13,7 +13,7 @@ collegeRouter.get('/', (req, res) => {
 });
 
 collegeRouter.get('/manage', (req, res) => {
-    res.render('collegeView.ejs', {college_name: config.college_name});
+    res.render('collegeView.ejs', {collegeName: config.collegeName});
 });
 
 collegeRouter.get('/list_courses', collegeController.getCourses);
