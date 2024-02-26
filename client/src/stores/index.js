@@ -6,6 +6,15 @@ import {
     showIntroAtom,
 } from './ChatStore';
 import {showBodyAtom, imageIndexAtom} from './HomeStore';
+import {
+    firstNameAtom,
+    lastNameAtom,
+    usernameAtom,
+    studentIdAtom,
+    emailAtom,
+    passwordAtom,
+    loggedInAtom,
+} from './LoginStore';
 
 export {
     settingsAtom,
@@ -16,4 +25,11 @@ export {
     showIntroAtom,
     showBodyAtom,
     imageIndexAtom,
+    firstNameAtom,
+    lastNameAtom,
+    usernameAtom,
+    studentIdAtom,
+    emailAtom,
+    passwordAtom,
+    loggedInAtom,
 };

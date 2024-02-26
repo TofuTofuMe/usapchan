@@ -6,81 +6,104 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
 import {
-  HomeScreen,
-  SettingScreen,
-  ChatScreen,
-  ForumScreen,
-  HandbookScreen,
+    HomeScreen,
+    SettingScreen,
+    ChatScreen,
+    ForumScreen,
+    HandbookScreen,
+    LoginScreen,
+    RegistrationScreen,
 } from './src/screens';
 import Feather from 'react-native-vector-icons/Feather';
+import {useAtom} from 'jotai';
+import {loggedInAtom} from './src/stores';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 const DrawerNav = createDrawerNavigator();
 
 const Drawer = () => {
-  return (
-    <DrawerNav.Navigator screenOptions={{drawerStyle: {paddingTop: 75}}}>
-      <DrawerNav.Screen
-        name="DrawerHome"
-        component={HomeScreen}
+    return (
+        <DrawerNav.Navigator screenOptions={{drawerStyle: {paddingTop: 75}}}>
+            <DrawerNav.Screen
+                name="DrawerHome"
+                component={HomeScreen}
         options={{title: 'Home'}}
-      />
+            />
       <DrawerNav.Screen name="Handbook" component={HandbookScreen} />
-      {/* <DrawerNav.Screen name="Settings" component={SettingScreen} /> */}
-    </DrawerNav.Navigator>
-  );
+            {/* <DrawerNav.Screen name="Settings" component={SettingScreen} /> */}
+        </DrawerNav.Navigator>
+    );
 };
 
 const Tab = () => {
-  return (
+    return (
     <BottomTab.Navigator>
-      <BottomTab.Screen
-        name="TabHome"
-        component={Drawer}
-        options={{
-          title: 'Home',
-          headerShown: false,
-          tabBarLabel: () => null,
+            <BottomTab.Screen
+                name="TabHome"
+                component={Drawer}
+                options={{
+                    title: 'Home',
+                    headerShown: false,
+                    tabBarLabel: () => null,
           tabBarIcon: () => <Feather name="home" size={25} color="black" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          tabBarLabel: () => null,
-          tabBarIcon: () => (
+                }}
+            />
+            <BottomTab.Screen
+                name="Chat"
+                component={ChatScreen}
+                options={{
+                    tabBarLabel: () => null,
+                    tabBarIcon: () => (
             <Feather name="message-square" size={25} color="black" />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Forum"
-        component={ForumScreen}
-        options={{
-          title: 'Forum',
-          tabBarLabel: () => null,
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="Forum"
+                component={ForumScreen}
+                options={{
+                    title: 'Forum',
+                    tabBarLabel: () => null,
           tabBarIcon: () => <Feather name="edit" size={25} color="black" />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
+                }}
+            />
+        </BottomTab.Navigator>
+    );
 };
 
 const App = () => {
-  useEffect(() => {});
+    useEffect(() => {});
+    const [loggedIn, setLoggedIn] = useAtom(loggedInAtom);
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Tab" component={Tab} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Settings" component={SettingScreen} />
-        <Stack.Screen name="Paraphrase" component={ChatScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                {loggedIn ? (
+                    <>
+                        <Stack.Screen name="Tab" component={Tab} />
+                        <Stack.Screen name="Home" component={HomeScreen} />
+                        <Stack.Screen
+                            name="Settings"
+                            component={SettingScreen}
+                        />
+                        <Stack.Screen
+                            name="Paraphrase"
+                            component={ChatScreen}
+                        />
+                    </>
+                ) : (
+                    <>
+                        <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen
+                            name="Registration"
+                            component={RegistrationScreen}
+                        />
+                    </>
+                )}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 };
 
 export default App;
