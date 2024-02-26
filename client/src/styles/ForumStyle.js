@@ -55,6 +55,23 @@ const ForumStyle = StyleSheet.create({
         fontSize: 18,
         marginBottom: 5,
     },
+    modalContainer: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        elevation: 5,
+        marginHorizontal: 20,
+    },
+    modalBackground: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0, 0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    commentInput: {
+        backgroundColor: materialColors.whiteSecondary,
+        color: materialColors.blackPrimary,
+    },
 });
 
 export default ForumStyle;

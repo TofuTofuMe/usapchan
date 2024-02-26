@@ -6,6 +6,7 @@ import {
     showIntroAtom,
 } from './ChatStore';
 import {showBodyAtom, imageIndexAtom} from './HomeStore';
+import {selectedPostAtom} from './ForumStore';
 import {
     firstNameAtom,
     lastNameAtom,
@@ -25,6 +26,7 @@ export {
     showIntroAtom,
     showBodyAtom,
     imageIndexAtom,
+    selectedPostAtom,
     firstNameAtom,
     lastNameAtom,
     usernameAtom,
