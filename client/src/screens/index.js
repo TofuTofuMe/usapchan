@@ -1,10 +1,10 @@
-import HomeScreen from './Home';
-import SettingScreen from './Settings';
-import ChatScreen from './Chat';
-import ForumScreen from './Forum';
-import HandbookScreen from './Handbook';
-import LoginScreen from './Login';
-import RegistrationScreen from './Registration';
+import HomeScreen from './HomeScreen';
+import SettingScreen from './SettingsScreen';
+import ChatScreen from './ChatScreen';
+import ForumScreen from './ForumScreen';
+import HandbookScreen from './HandbookScreen';
+import LoginScreen from './LoginScreen';
+import RegistrationScreen from './RegistrationScreen';
 
 export {
     HomeScreen,
