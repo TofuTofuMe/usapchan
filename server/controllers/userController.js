@@ -29,7 +29,9 @@ exports.loginUser = async (req, res) => {
                 const userToken = jwt.sign(user, config.jwtSecret, {
                     expiresIn: config.jwtExpiry,
                 });
-                return res.status(200).json(userToken);
+                return res
+                    .status(200)
+                    .json({success: true, user: user, token: userToken});
             }
         }
         res.status(401).json({
