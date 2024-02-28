@@ -6,6 +6,7 @@ const userController = require('../controllers/userController');
 var userRouter = express.Router();
 
 userRouter.use(bodyParser.urlencoded({extended: false}));
+userRouter.use(bodyParser.json());
 
 userRouter.get('/', (req, res) => {
     res.status(200).end();
