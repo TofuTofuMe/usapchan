@@ -36,12 +36,12 @@ exports.loginUser = async (req, res) => {
         }
         res.status(401).json({
             success: false,
-            message: 'Invalid login credentials. Try again',
+            message: 'Invalid login credentials. Try again.',
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error logging user in',
+            message: 'Error logging user in.',
         });
         console.error(error);
     }
@@ -79,13 +79,13 @@ exports.registerUser = async (req, res) => {
         } else {
             res.status(409).json({
                 success: false,
-                message: `A user with the same credentials already exists`,
+                message: `A user with the same credentials already exists.`,
             });
         }
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error registering user',
+            message: 'Error registering user.',
             error: error.message,
         });
         console.error(error);

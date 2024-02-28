@@ -9,7 +9,7 @@ exports.addPost = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error adding post',
+            message: 'Error adding post.',
             error: error.message,
         });
         console.error(error);
@@ -24,7 +24,7 @@ exports.addComment = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error adding comment',
+            message: 'Error adding comment.',
             error: error.message,
         });
     }
@@ -39,7 +39,7 @@ exports.getPosts = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error getting posts',
+            message: 'Error getting posts.',
             error: error.message,
         });
     }
@@ -54,7 +54,7 @@ exports.getComments = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error getting comments',
+            message: 'Error getting comments.',
             error: error.message,
         });
     }
@@ -75,7 +75,7 @@ exports.dropPost = async (req, res) => {
         if (!post) {
             return res.status(400).json({
                 success: false,
-                message: 'Post not found',
+                message: 'Post not found.',
             });
         }
         await post.destroy();
@@ -83,7 +83,7 @@ exports.dropPost = async (req, res) => {
     } catch {
         res.status(500).json({
             success: false,
-            message: 'Failed to destroy post',
+            message: 'Failed to destroy post.',
             error: error,
         });
     }
@@ -104,7 +104,7 @@ exports.dropComment = async (req, res) => {
         if (!comment) {
             return res.status(400).json({
                 success: false,
-                message: 'Comment not found',
+                message: 'Comment not found.',
             });
         }
         await comment.destroy();
@@ -112,7 +112,7 @@ exports.dropComment = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to destroy comment',
+            message: 'Failed to destroy comment.',
             error: error.message,
         });
     }

@@ -9,7 +9,7 @@ exports.trainNlp = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error training NLP',
+            message: 'Error training NLP.',
             error: error.message,
         });
     }
@@ -29,7 +29,7 @@ exports.addCorpus = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error adding answer',
+            message: 'Error adding answer.',
             error: error.message,
         });
     }
@@ -50,7 +50,7 @@ exports.getCorpus = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error fetching corpus',
+            message: 'Error fetching corpus.',
             error: error.message,
         });
     }
@@ -68,7 +68,7 @@ exports.updateCorpus = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error updating corpus',
+            message: 'Error updating corpus.',
             error: error.message,
         });
     }
@@ -83,7 +83,7 @@ exports.sendChat = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error sending chat',
+            message: 'Error sending chat.',
             error: error.message,
         });
     }
@@ -105,7 +105,7 @@ exports.dropCorpus = async (req, res) => {
         if (!corpus) {
             return res.status(400).json({
                 success: false,
-                message: 'Corpus not found',
+                message: 'Corpus not found.',
             });
         }
         await corpus.destroy();
@@ -113,7 +113,7 @@ exports.dropCorpus = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error dropping corpus',
+            message: 'Error dropping corpus.',
             error: error.message,
         });
     }

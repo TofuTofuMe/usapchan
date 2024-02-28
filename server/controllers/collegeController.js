@@ -12,7 +12,7 @@ exports.addCourse = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to add course',
+            message: 'Failed to add course.',
             error: error.message,
         });
     }
@@ -31,7 +31,7 @@ exports.addFaculty = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to add faculty',
+            message: 'Failed to add faculty.',
             error: error.message,
         });
     }
@@ -62,7 +62,7 @@ exports.addSchedule = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to add schedule',
+            message: 'Failed to add schedule.',
             error: error.message,
         });
     }
@@ -84,7 +84,7 @@ exports.updateCourse = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error updating course',
+            message: 'Error updating course.',
             error: error.message,
         });
     }
@@ -102,7 +102,7 @@ exports.updateFaculty = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error updating faculty',
+            message: 'Error updating faculty.',
             error: error.message,
         });
     }
@@ -127,7 +127,7 @@ exports.updateSchedule = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error updating schedule',
+            message: 'Error updating schedule.',
             error: error.message,
         });
     }
@@ -142,7 +142,7 @@ exports.getCourses = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error fetching courses',
+            message: 'Error fetching courses.',
             error: error.message,
         });
     }
@@ -157,7 +157,7 @@ exports.getFaculties = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error fetching faculties',
+            message: 'Error fetching faculties.',
             error: error.message,
         });
     }
@@ -181,7 +181,7 @@ exports.getSchedules = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error fetching schedules',
+            message: 'Error fetching schedules.',
             error: error.message,
         });
     }
@@ -202,7 +202,7 @@ exports.dropCourse = async (req, res) => {
         if (!course) {
             return res.status(400).json({
                 success: false,
-                message: 'Course not found',
+                message: 'Course not found.',
             });
         }
         await course.destroy();
@@ -210,7 +210,7 @@ exports.dropCourse = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to destroy course',
+            message: 'Failed to destroy course.',
             error: error.message,
         });
     }
@@ -231,7 +231,7 @@ exports.dropFaculty = async (req, res) => {
         if (!faculty) {
             return res.status(400).json({
                 success: false,
-                message: 'Faculty not found',
+                message: 'Faculty not found.',
             });
         }
         await faculty.destroy();
@@ -239,7 +239,7 @@ exports.dropFaculty = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to destroy faculty',
+            message: 'Failed to destroy faculty.',
             error: error.message,
         });
     }
@@ -263,15 +263,15 @@ exports.dropSchedule = async (req, res) => {
         if (!schedule) {
             return res(400).json({
                 success: false,
-                message: 'Schedule not found',
+                message: 'Schedule not found.',
             });
         }
         await schedule.destroy();
-        res.status(200).redirect('/college/manage');
+        res.status(200).redirect('/college/manage.');
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Failed to destroy schedule',
+            message: 'Failed to destroy schedule.',
             error: error.message,
         });
     }
