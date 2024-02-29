@@ -15,14 +15,16 @@ import {
     RegistrationScreen,
 } from './src/screens';
 import Feather from 'react-native-vector-icons/Feather';
-import {useAtom} from 'jotai';
-import {loggedInAtom} from './src/stores';
+import {useAtomValue, useSetAtom} from 'jotai';
+import {loginStateAtom, userDataAtom} from './src/stores';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 const DrawerNav = createDrawerNavigator();
 
 const Drawer = () => {
+    const setLoginState = useSetAtom(loginStateAtom);
+    const setUserData = useSetAtom(userDataAtom);
     return (
         <DrawerNav.Navigator screenOptions={{drawerStyle: {paddingTop: 75}}}>
             <DrawerNav.Screen
@@ -44,6 +46,16 @@ const Drawer = () => {
                         backgroundColor: '#526d51',
                     },
                     headerTintColor: 'white',
+                }}
+            />
+            <DrawerNav.Screen
+                name="Logout"
+                component={LoginScreen}
+                listeners={{
+                    drawerItemPress: () => {
+                        setUserData({});
+                        setLoginState(false);
+                    },
                 }}
             />
             {/* <DrawerNav.Screen name="Settings" component={SettingScreen} /> */}
@@ -112,13 +124,14 @@ const Tab = () => {
 };
 
 const App = () => {
+    const loginState = useAtomValue(loginStateAtom);
+
     useEffect(() => {});
-    const [loggedIn, setLoggedIn] = useAtom(loggedInAtom);
 
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false}}>
-                {loggedIn ? (
+                {loginState ? (
                     <>
                         <Stack.Screen name="Tab" component={Tab} />
                         <Stack.Screen name="Home" component={HomeScreen} />

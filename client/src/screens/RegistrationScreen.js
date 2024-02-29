@@ -1,23 +1,12 @@
 import {React} from 'react';
-import {View, Text, TextInput, Pressable} from 'react-native';
+import {Alert, View, Text, TextInput, Pressable} from 'react-native';
 import RegistrationStyle from '../styles/RegistrationStyle';
-import {
-    firstNameAtom,
-    lastNameAtom,
-    usernameAtom,
-    studentIdAtom,
-    emailAtom,
-    passwordAtom,
-} from '../stores';
 import {useAtom} from 'jotai';
+import {userDataAtom} from '../stores';
+import {registerUser} from '../utils';
 
-const RegistrationScreen = () => {
-    const [firstName, setFirstName] = useAtom(firstNameAtom);
-    const [lastName, setLastName] = useAtom(lastNameAtom);
-    const [username, setUsername] = useAtom(usernameAtom);
-    const [studentId, setStudentId] = useAtom(studentIdAtom);
-    const [email, setEmail] = useAtom(emailAtom);
-    const [password, setPassword] = useAtom(passwordAtom);
+const RegistrationScreen = ({navigation}) => {
+    const [userData, setUserData] = useAtom(userDataAtom);
 
     return (
         <View style={RegistrationStyle.flexView}>
@@ -30,14 +19,22 @@ const RegistrationScreen = () => {
                     <TextInput
                         style={[RegistrationStyle.inputName, {marginRight: 20}]}
                         placeholder="First Name"
-                        value={firstName}
-                        onChangeText={setFirstName}
+                        onChangeText={(firstNameInput) => {
+                            setUserData({
+                                ...userData,
+                                firstName: firstNameInput,
+                            });
+                        }}
                     />
                     <TextInput
                         style={RegistrationStyle.inputName}
                         placeholder="Last Name"
-                        value={lastName}
-                        onChangeText={setLastName}
+                        onChangeText={(lastNameInput) => {
+                            setUserData({
+                                ...userData,
+                                lastName: lastNameInput,
+                            });
+                        }}
                     />
                 </View>
                 <View style={RegistrationStyle.inputLabel}>
@@ -46,8 +43,12 @@ const RegistrationScreen = () => {
                 <TextInput
                     style={RegistrationStyle.input}
                     placeholder="Username"
-                    value={username}
-                    onChangeText={setUsername}
+                    onChangeText={(usernameInput) => {
+                        setUserData({
+                            ...userData,
+                            username: usernameInput,
+                        });
+                    }}
                 />
                 <View style={RegistrationStyle.inputLabel}>
                     <Text>Student ID</Text>
@@ -55,8 +56,12 @@ const RegistrationScreen = () => {
                 <TextInput
                     style={RegistrationStyle.input}
                     placeholder="Student ID"
-                    value={studentId}
-                    onChangeText={setStudentId}
+                    onChangeText={(studentIdInput) => {
+                        setUserData({
+                            ...userData,
+                            studentId: studentIdInput,
+                        });
+                    }}
                 />
                 <View style={RegistrationStyle.inputLabel}>
                     <Text>Email</Text>
@@ -64,17 +69,25 @@ const RegistrationScreen = () => {
                 <TextInput
                     style={RegistrationStyle.input}
                     placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
+                    onChangeText={(emailInput) => {
+                        setUserData({
+                            ...userData,
+                            email: emailInput,
+                        });
+                    }}
                 />
                 <View style={RegistrationStyle.inputLabel}>
                     <Text>Password</Text>
                 </View>
                 <TextInput
                     style={RegistrationStyle.input}
-                    placeholder="New password"
-                    value={password}
-                    onChangeText={setPassword}
+                    placeholder="Password"
+                    onChangeText={(passwordInput) => {
+                        setUserData({
+                            ...userData,
+                            password: passwordInput,
+                        });
+                    }}
                     secureTextEntry
                 />
                 <View style={RegistrationStyle.pressableView}>
@@ -89,17 +102,18 @@ const RegistrationScreen = () => {
                                 alignItems: 'center',
                             },
                         ]}
+                        onPress={async () => {
+                            const response = await registerUser(userData);
+
+                            if (response.success) {
+                                Alert.alert('Success', response.message);
+                                navigation.navigate('Login');
+                            } else {
+                                Alert.alert('Error', response.message);
+                            }
+                        }}
                     >
-                        {({pressed}) => (
-                            <Text
-                                style={[
-                                    RegistrationStyle.text,
-                                    {color: pressed ? 'gray' : 'black'},
-                                ]}
-                            >
-                                Sign up
-                            </Text>
-                        )}
+                        <Text>Sign Up</Text>
                     </Pressable>
                 </View>
             </View>

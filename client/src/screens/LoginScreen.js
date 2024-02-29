@@ -1,20 +1,18 @@
 import {React} from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    Image,
-    TouchableOpacity,
-    Pressable,
-} from 'react-native';
-import {usernameAtom, passwordAtom, loggedInAtom} from '../stores';
-import {useAtom} from 'jotai';
+import {Alert, View, Text, TextInput, Image, Pressable} from 'react-native';
+import {useAtom, useSetAtom} from 'jotai';
+import {loginUser} from '../utils';
 import LoginStyle from '../styles/LoginStyle';
+import {
+    loginStateAtom,
+    userDataAtom,
+    userTokenAtom,
+} from '../stores/SettingStore';
 
 const LoginScreen = ({navigation}) => {
-    const [username, setUsername] = useAtom(usernameAtom);
-    const [password, setPassword] = useAtom(passwordAtom);
-    const [loggedIn, setLoggedIn] = useAtom(loggedInAtom);
+    const setLoginState = useSetAtom(loginStateAtom);
+    const [userData, setUserData] = useAtom(userDataAtom);
+    const setUserToken = useSetAtom(userTokenAtom);
 
     return (
         <View style={LoginStyle.flexView}>
@@ -28,19 +26,38 @@ const LoginScreen = ({navigation}) => {
                     <TextInput
                         style={LoginStyle.input}
                         placeholder="Username"
-                        value={username}
-                        onChangeText={setUsername}
+                        onChangeText={(usernameInput) =>
+                            setUserData({
+                                ...userData,
+                                username: usernameInput,
+                            })
+                        }
                     />
                     <TextInput
                         style={LoginStyle.input}
                         placeholder="Password"
-                        value={password}
-                        onChangeText={setPassword}
+                        onChangeText={(passwordInput) =>
+                            setUserData({
+                                ...userData,
+                                password: passwordInput,
+                            })
+                        }
                     />
                 </View>
-                <TouchableOpacity style={LoginStyle.loginButton}>
+                <Pressable
+                    style={LoginStyle.loginButton}
+                    onPress={async () => {
+                        const response = await loginUser(userData);
+                        if (response.success) {
+                            setUserToken(response);
+                            setLoginState(true);
+                        } else {
+                            Alert.alert('Error logging in', response.message);
+                        }
+                    }}
+                >
                     <Text>Login</Text>
-                </TouchableOpacity>
+                </Pressable>
                 <Text style={LoginStyle.footerText}>
                     Don't have an account?
                 </Text>

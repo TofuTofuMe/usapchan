@@ -4,18 +4,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storage = createJSONStorage(() => AsyncStorage);
 
-const settingsAtom = atomWithStorage(
-  'settings',
-  {
-    inferenceType: [],
-    llamaServerAddress: '',
-  },
-  storage,
-);
-const modalAtom = atom({
-  visibility: false,
-  interactable: false,
-  message: '',
+const loginStateAtom = atom(false);
+
+const userDataAtom = atom({
+    studentId: '',
+    username: '',
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
 });
 
-export {settingsAtom, modalAtom};
+const userTokenAtom = atomWithStorage('userToken', '', storage);
+
+const settingsAtom = atomWithStorage('settings', {}, storage);
+
+const modalAtom = atom({
+    visibility: false,
+    interactable: false,
+    message: '',
+});
+
+export {loginStateAtom, userDataAtom, userTokenAtom, settingsAtom, modalAtom};
