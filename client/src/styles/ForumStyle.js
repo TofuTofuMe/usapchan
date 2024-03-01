@@ -43,6 +43,7 @@ const ForumStyle = StyleSheet.create({
         marginLeft: 5,
     },
     title: {
+        paddingLeft: 5,
         fontWeight: '500',
         color: 'black',
     },
@@ -59,6 +60,11 @@ const ForumStyle = StyleSheet.create({
         ...material.title,
         fontSize: 18,
         marginBottom: 5,
+        color: 'black',
+    },
+    commentPoster: {
+        ...material.title,
+        fontSize: 15,
         color: 'black',
     },
     modalContainer: {
