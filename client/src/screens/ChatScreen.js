@@ -31,22 +31,38 @@ const ChatScreen = () => {
             {showIntro && (
                 <View style={Style.body}>
                     <View style={{flexDirection: 'row', flex: 1}}>
-                        <Text style={Style.bodyText}>
-                            Hi Student, Usapchan is here! Your college life
-                            companion.
-                        </Text>
+                        <View style={{flex: 1}}>
+                            <Text style={Style.bodyText}>
+                                Hi Student, Usapchan is here! Your college life
+                                companion.
+                            </Text>
+                        </View>
 
-                        <Image
-                            source={require('../assets/chatMascot.png')}
-                            style={Style.chatMascot}
-                        />
+                        <View
+                            style={{
+                                flex: 1,
+                                position: 'absolute',
+                                marginLeft: 100,
+                                marginTop: 50,
+                            }}
+                        >
+                            <Image
+                                source={require('../assets/chatMascot.png')}
+                                style={Style.chatMascot}
+                            />
+                        </View>
                     </View>
                 </View>
             )}
             <ScrollView style={Style.bodyView}>
-                {messages.map((msg) => (
-                    <ChatBubble key={msg.id} text={msg.text} user={msg.user} />
-                ))}
+                {!showIntro &&
+                    messages.map((msg) => (
+                        <ChatBubble
+                            key={msg.id}
+                            text={msg.text}
+                            user={msg.user}
+                        />
+                    ))}
             </ScrollView>
             <View style={Style.bottomView}>
                 <View style={{flex: 1, marginBottom: 5}}>
@@ -56,6 +72,7 @@ const ChatScreen = () => {
                         multiline
                         value={textInput}
                         placeholder="Ask a question"
+                        placeholderTextColor={'gray'}
                         onChangeText={(newTextInput) =>
                             setTextInput(newTextInput)
                         }

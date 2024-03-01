@@ -4,44 +4,49 @@ import {material} from 'react-native-typography';
 const RegistrationStyle = StyleSheet.create({
     flexView: {
         flex: 1,
-        backgroundColor: '#afd69b',
-        alignItems: 'center',
+    },
+    imageBackground: {
+        flex: 1,
         justifyContent: 'center',
     },
     headerText: {
         ...material.display2Black,
-        fontSize: 50,
-        marginTop: -50,
-        marginBottom: 100,
+        fontSize: 40,
+        marginTop: 10,
+        marginBottom: 80,
+        color: 'white',
     },
     inputLabel: {
         marginBottom: 10,
         alignSelf: 'flex-start',
+        paddingLeft: 20,
     },
     inputName: {
         backgroundColor: 'white',
-        width: 165,
+        width: 135,
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
         padding: 10,
         marginBottom: 10,
+        color: 'black',
     },
     input: {
         backgroundColor: 'white',
-        width: 350,
+        width: 290,
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
         padding: 10,
         marginBottom: 10,
+        color: 'black',
     },
     pressableView: {
         marginTop: 20,
         alignItems: 'center',
     },
     text: {
-        ...material.display2Black,
+        color: 'black',
     },
 });
 export default RegistrationStyle;

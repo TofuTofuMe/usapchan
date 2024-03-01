@@ -35,6 +35,7 @@ const HomeStyle = StyleSheet.create({
         ...material.body2,
         fontSize: 22,
         fontWeight: 'normal',
+        color: 'black',
     },
     announcementImage: {
         width: '100%',
@@ -47,16 +48,19 @@ const HomeStyle = StyleSheet.create({
         marginBottom: 15,
         marginTop: 10,
         alignSelf: 'center',
+        color: 'black',
     },
     announcementDate: {
         ...robotoWeights.condensed,
         fontSize: 12,
         alignSelf: 'center',
+        color: 'black',
     },
     announcementAuthor: {
         ...robotoWeights.condensed,
         fontSize: 16,
         alignSelf: 'center',
+        color: 'black',
     },
     announcementBodyText: {
         textAlign: 'justify',
@@ -65,6 +69,7 @@ const HomeStyle = StyleSheet.create({
         paddingRight: 50,
         marginTop: 20,
         marginBottom: 50,
+        color: 'black',
     },
     calendarView: {
         flex: 1,

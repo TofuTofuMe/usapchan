@@ -12,14 +12,17 @@ const ForumScreen = () => {
                 posts={[
                     {
                         poster: 'User1',
+                        title: 'Title',
                         body: 'Test',
                     },
                     {
                         poster: 'User2',
+                        title: 'Title',
                         body: 'Test',
                     },
                     {
                         poster: 'User3',
+                        title: 'Title',
                         body: 'Test',
                     },
                 ]}

@@ -91,6 +91,7 @@ const Style = StyleSheet.create({
         marginTop: 5,
         margin: 10,
         padding: 10,
+        color: 'black',
     },
     title: {
         ...material.title,
@@ -196,9 +197,10 @@ const Style = StyleSheet.create({
         lineHeight: 30,
     },
     chatMascot: {
-        width: '100%',
+        width: 300,
+        height: 300,
         resizeMode: 'contain',
-        marginTop: -300,
+        position: 'absolute',
     },
     bottom: {
         flex: 1,

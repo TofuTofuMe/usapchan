@@ -31,7 +31,15 @@ const ForumPost = ({posts}) => {
                 <Pressable key={index} onPress={() => handlePostPress(post)}>
                     <View style={ForumStyle.post}>
                         <Text style={ForumStyle.userName}>{post.poster}</Text>
-                        <Text style={{marginBottom: 10, paddingLeft: 5}}>
+                        <Text style={ForumStyle.title}>{post.title}</Text>
+                        <Text
+                            style={{
+                                marginBottom: 10,
+                                paddingLeft: 5,
+                                paddingVertical: 30,
+                                color: 'black',
+                            }}
+                        >
                             {post.body}
                         </Text>
 
@@ -39,6 +47,7 @@ const ForumPost = ({posts}) => {
                             style={{
                                 flexDirection: 'row',
                                 justifyContent: 'space-between',
+                                alignSelf: 'flex-start',
                                 paddingRight: 20,
                             }}
                         >
@@ -49,26 +58,20 @@ const ForumPost = ({posts}) => {
                                     ]}
                                 >
                                     <Feather
-                                        name="arrow-up"
-                                        size={20}
+                                        name="heart"
+                                        size={22}
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text>0</Text>
-                            </View>
-                            <View style={{flexDirection: 'row'}}>
-                                <Pressable
-                                    style={({pressed}) => [
-                                        pressed && {opacity: 0.5},
+                                <Text
+                                    style={[
+                                        ForumStyle.featherNum,
+                                        {marginHorizontal: 5},
+                                        {fontSize: 15},
                                     ]}
                                 >
-                                    <Feather
-                                        name="arrow-down"
-                                        size={20}
-                                        color="black"
-                                    />
-                                </Pressable>
-                                <Text>0</Text>
+                                    0
+                                </Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 <Pressable
@@ -80,11 +83,19 @@ const ForumPost = ({posts}) => {
                                 >
                                     <Feather
                                         name="message-square"
-                                        size={20}
+                                        size={22}
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text style={{marginLeft: 5}}>0</Text>
+                                <Text
+                                    style={[
+                                        ForumStyle.featherNum,
+                                        {marginHorizontal: 5},
+                                        {fontSize: 15},
+                                    ]}
+                                >
+                                    0
+                                </Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 <Pressable
@@ -94,11 +105,19 @@ const ForumPost = ({posts}) => {
                                 >
                                     <Feather
                                         name="share"
-                                        size={20}
+                                        size={22}
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text style={{marginLeft: 5}}>0</Text>
+                                <Text
+                                    style={[
+                                        ForumStyle.featherNum,
+                                        {marginHorizontal: 5},
+                                        {fontSize: 15},
+                                    ]}
+                                >
+                                    0
+                                </Text>
                             </View>
                         </View>
                     </View>

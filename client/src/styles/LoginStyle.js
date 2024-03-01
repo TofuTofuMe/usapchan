@@ -4,28 +4,33 @@ import {material} from 'react-native-typography';
 const LoginStyle = StyleSheet.create({
     flexView: {
         flex: 1,
-        backgroundColor: '#afd69b',
+    },
+    imageBackground: {
+        flex: 1,
+        justifyContent: 'center',
     },
     container: {
         flex: 1,
         alignSelf: 'center',
         alignItems: 'center',
-        width: '50%',
+        width: '100%',
         height: 200,
         paddingTop: 20,
     },
     headerText: {
         ...material.display2Black,
         fontSize: 50,
+        color: 'white',
     },
     input: {
         backgroundColor: 'white',
-        width: 350,
+        width: 300,
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
         padding: 10,
         marginBottom: 10,
+        color: 'black',
     },
     placeholder: {
         fontSize: 16,
@@ -52,9 +57,11 @@ const LoginStyle = StyleSheet.create({
     footerText: {
         marginTop: 50,
         fontSize: 18,
+        color: 'black',
     },
     text: {
         fontSize: 18,
+        fontWeight: '600',
     },
 });
 

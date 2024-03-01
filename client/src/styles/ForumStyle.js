@@ -19,6 +19,7 @@ const ForumStyle = StyleSheet.create({
         marginTop: 5,
         margin: 10,
         padding: 10,
+        color: 'black',
     },
     mediaContainer: {
         width: '85%',
@@ -41,11 +42,15 @@ const ForumStyle = StyleSheet.create({
         fontSize: 16,
         marginLeft: 5,
     },
+    title: {
+        fontWeight: '500',
+        color: 'black',
+    },
     post: {
         flex: 1,
-        paddingVertical: 15,
+        paddingVertical: 25,
         paddingHorizontal: 25,
-        marginTop: 10,
+        marginVertical: 10,
         backgroundColor: 'rgba(52, 52, 52, 0.05)',
         marginHorizontal: 10,
         borderRadius: 10,
@@ -54,13 +59,12 @@ const ForumStyle = StyleSheet.create({
         ...material.title,
         fontSize: 18,
         marginBottom: 5,
+        color: 'black',
     },
     modalContainer: {
         backgroundColor: 'white',
-        padding: 20,
         borderRadius: 10,
         elevation: 5,
-        marginHorizontal: 20,
     },
     modalBackground: {
         flex: 1,
@@ -69,8 +73,12 @@ const ForumStyle = StyleSheet.create({
         alignItems: 'center',
     },
     commentInput: {
+        marginTop: 30,
         backgroundColor: materialColors.whiteSecondary,
         color: materialColors.blackPrimary,
+    },
+    featherNum: {
+        color: 'black',
     },
 });
 

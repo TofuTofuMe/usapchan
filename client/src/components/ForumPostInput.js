@@ -11,6 +11,7 @@ const ForumPostInput = () => {
                 enterKeyHint="enter"
                 multiline
                 placeholder={`What's on your mind?`}
+                placeholderTextColor={'gray'}
             />
             <View
                 style={{
@@ -19,7 +20,8 @@ const ForumPostInput = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginLeft: 30,
-                }}>
+                }}
+            >
                 <Pressable style={({pressed}) => [pressed && {opacity: 0.5}]}>
                     <View style={ForumStyle.mediaContainer}>
                         <Feather name="image" size={25} color="black" />
