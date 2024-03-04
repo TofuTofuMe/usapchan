@@ -1,12 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const userController = require('../controllers/userController');
 
 var userRouter = express.Router();
 
-userRouter.use(bodyParser.json());
+userRouter.use(express.urlencoded({extended: true}));
+userRouter.use(express.json());
 userRouter.use(cookieParser());
 
 userRouter.get('/', (req, res) => {

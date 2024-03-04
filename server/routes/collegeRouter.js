@@ -1,6 +1,5 @@
 const express = require('express');
 const config = require('../config.json');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const collegeController = require('../controllers/collegeController');
@@ -8,7 +7,8 @@ const {verifyAdmin} = require('../controllers/userController');
 
 var collegeRouter = express.Router();
 
-collegeRouter.use(bodyParser.json());
+collegeRouter.use(express.urlencoded({extended: true}));
+collegeRouter.use(express.json());
 collegeRouter.use(cookieParser());
 
 collegeRouter.get('/', verifyAdmin, (req, res) => {

@@ -1,6 +1,5 @@
 const express = require('express');
 const config = require('../config.json');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const chatController = require('../controllers/chatController');
@@ -8,7 +7,8 @@ const {verifyUser, verifyAdmin} = require('../controllers/userController');
 
 var chatRouter = express.Router();
 
-chatRouter.use(bodyParser.json());
+chatRouter.use(express.urlencoded({extended: true}));
+chatRouter.use(express.json());
 chatRouter.use(cookieParser());
 
 chatRouter.get('/', verifyUser, (req, res) => {

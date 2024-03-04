@@ -1,6 +1,5 @@
 const express = require('express');
 const config = require('../config.json');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const forumController = require('../controllers/forumController');
@@ -8,7 +7,8 @@ const {verifyUser, verifyAdmin} = require('../controllers/userController');
 
 var forumRouter = express.Router();
 
-forumRouter.use(bodyParser.json());
+forumRouter.use(express.urlencoded({extended: true}));
+forumRouter.use(express.json());
 forumRouter.use(cookieParser());
 
 forumRouter.get('/', verifyUser, (req, res) => {
