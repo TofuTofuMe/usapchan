@@ -271,7 +271,7 @@
                 <input type="text" name="corpusId" id="corpusId" />
             </div>
             <div>
-                <label class="text-black">Language</label>
+                <label class="text-black">Language</label> <br />
                 <select
                     name="lang"
                     id="lang"
@@ -281,34 +281,32 @@
                 </select>
             </div>
             <div>
-                <label class="text-black">Intent</label>
+                <label class="text-black">Intent</label> <br />
                 <input
                     type="text"
                     class="w-auto rounded-md ring-black ring-1 m-2"
                     name="intent"
                     id="intent"
-                    required
+                    placeholder="Leave blank for random"
                 />
             </div>
             <div>
-                <label class="text-black">Query</label>
-                <input
-                    type="text"
+                <label class="text-black">Query</label> <br />
+                <textarea
                     class="w-auto rounded-md ring-black ring-1 m-2"
                     name="query"
                     id="query"
                     required
-                />
+                ></textarea>
             </div>
             <div>
-                <label class="text-black">Answer</label>
-                <input
-                    type="text"
+                <label class="text-black">Answer</label> <br />
+                <textarea
                     class="w-auto rounded-md ring-black ring-1 m-2"
                     name="answer"
                     id="answer"
                     required
-                />
+                ></textarea>
             </div>
             <div>
                 <input
@@ -338,7 +336,8 @@
     </div>
     <div class="break-inside-avoid-column">
         <form id="testChatForm">
-            <label class="text-black">Test Query</label> <br />
+            <p class="font-bold">Try Queries and Answers</p>
+            <label class="text-black">Query</label> <br />
             <textarea
                 class="w-auto rounded-md ring-black ring-1 m-2"
                 name="message"
@@ -366,6 +365,28 @@
                     class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
                 >
                     Send
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="break-inside-avoid-column">
+        <form id="trainNlpForm">
+            <p class="font-bold">Train and Check Model</p>
+            <label class="text-black">Training Result</label> <br />
+            <textarea
+                class="w-auto rounded-md ring-black ring-1 m-2"
+                name="trainResult"
+                id="trainResult"
+                readonly
+                disabled
+            ></textarea>
+            <div>
+                <button
+                    type="button"
+                    id="trainNlp"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Train
                 </button>
             </div>
         </form>

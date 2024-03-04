@@ -11,11 +11,13 @@ fetchTableData('Corpus').then(() => {
         setFormAction(
             'corpusSelect',
             'resetCorpus',
+            'submitCorpus',
             'dropCorpus',
-            'corpusForm',
+            'chatForm',
             'add_corpus',
-            'add_corpus'
+            'update_corpus'
         );
         setupChat('message', 'sendChat', 'response');
+        setupTraining('trainResult', 'trainNlp');
     });
 });

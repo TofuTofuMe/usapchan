@@ -177,3 +177,22 @@ function setupChat(chatBoxId, sendButtonId, replyBoxId) {
         console.error('Error setting up chat behaviour: ', error.message);
     }
 }
+
+function setupTraining(trainResultId, trainButtonId) {
+    try {
+        const trainResult = document.getElementById(trainResultId);
+        const trainButton = document.getElementById(trainButtonId);
+
+        trainButton.addEventListener('click', () => {
+            fetch('/chat/train_nlp', {
+                method: 'GET',
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    trainResult.value = res.message ? res.message : res.error;
+                });
+        });
+    } catch (error) {
+        console.error('Error setting up training interface: ', error.message);
+    }
+}

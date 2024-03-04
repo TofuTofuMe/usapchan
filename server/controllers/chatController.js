@@ -1,11 +1,15 @@
 const nlpHandler = require('../utils/nlpHandler');
 const {Corpus} = require('../utils/sqlHandler');
+const {nanoid} = require('nanoid');
 
 exports.trainNlp = async (req, res) => {
     try {
         await nlpHandler.trainNlp();
 
-        res.status(200).end();
+        res.status(200).json({
+            success: true,
+            message: 'Successfully trained NLP!',
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -21,7 +25,7 @@ exports.addCorpus = async (req, res) => {
 
         await Corpus.create({
             lang,
-            intent,
+            intent: intent ? intent : nanoid(10),
             query,
             answer,
         });
@@ -91,15 +95,13 @@ exports.sendChat = async (req, res) => {
 
 exports.dropCorpus = async (req, res) => {
     try {
-        const {corpusId, lang, intent, query, answer} = req.body;
+        const {corpusId, lang, intent} = req.body;
 
         const corpus = await Corpus.findOne({
             where: {
                 id: corpusId,
                 lang: lang,
                 intent: intent,
-                query: query,
-                answer: answer,
             },
         });
         if (!corpus) {
