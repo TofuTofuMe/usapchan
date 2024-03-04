@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title><%= collegeName %> - Login</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link type="text/css" rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <%- include('navbar.ejs') %>
+        <div
+            class="mx-auto flex rounded border-2 border-black w-auto ml-4 mr-4 my-4 p-4"
+        >
+            <div class="break-inside-avoid-column">
+                <p class="text-black font-medium">Log In</p>
+                <form id="loginForm">
+                    <div>
+                        <label class="text-black">Username</label>
+                        <input
+                            type="text"
+                            class="w-auto rounded-md ring-black ring-1 m-2"
+                            name="username"
+                            id="username"
+                        />
+                    </div>
+                    <div>
+                        <label class="text-black">Password</label>
+                        <input
+                            type="password"
+                            class="w-auto rounded-md ring-black ring-1 m-2"
+                            name="password"
+                            id="password"
+                        />
+                    </div>
+                    <div>
+                        <button
+                            type="button"
+                            id="submitLogin"
+                            class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+                <% if (locals.loginError) { %>
+                <div class="ring-1 rounded-md ring-red-500 p-1 m-2 w-fit h-fit">
+                    <h1 class="object-cover"><%= loginError %></h1>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <script>
+        try {
+            const loginButton = document.getElementById('submitLogin');
+            loginButton.addEventListener('click', () => {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                fetch('/user/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                    }),
+                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                        window.location.assign('/');
+                    });
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    </script>
+</html>

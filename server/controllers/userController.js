@@ -17,7 +17,7 @@ exports.loginUser = async (req, res) => {
 
             if (validPass) {
                 const user = {
-                    id: nanoid(10),
+                    id: dbUser.id,
                     username: dbUser.username,
                     email: dbUser.email,
                     studentId: dbUser.studentId,
@@ -29,8 +29,13 @@ exports.loginUser = async (req, res) => {
                 const userToken = jwt.sign(user, config.jwtSecret, {
                     expiresIn: config.jwtExpiry,
                 });
+
                 return res
                     .status(200)
+                    .cookie('token', userToken, {
+                        httpOnly: true,
+                        sameSite: 'Lax',
+                    })
                     .json({success: true, user: user, token: userToken});
             }
         }
@@ -92,46 +97,51 @@ exports.registerUser = async (req, res) => {
     }
 };
 
-exports.verifyUser = async (req, res, next) => {
+const verifyToken = async (req, res, next, userType = null) => {
     try {
         const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
+        const token =
+            (authHeader && authHeader.split(' ')[1]) || req.cookies.token;
 
-        if (token == null || undefined) {
-            return res.status(401).end();
+        if (!token || token === undefined) {
+            return res.status(401).render('../views/loginView.ejs', {
+                collegeName: config.collegeName,
+            });
         }
 
         jwt.verify(token, config.jwtSecret, (error, user) => {
-            if (user && !error) {
+            if (userType === 'Admin' && user.type === 'Admin') {
+                next();
+            } else if (userType === 'User' && user.type === 'Admin') {
                 next();
             } else {
-                return res.status(401).end();
+                res.status(401).render('../views/loginView.ejs', {
+                    collegeName: config.collegeName,
+                    loginError: 'Invalid access level.',
+                });
             }
         });
     } catch (error) {
         res.status(500).end();
-        console.error(error);
+        console.error(error.message);
     }
 };
 
+exports.verifyUser = async (req, res, next) => {
+    verifyToken(req, res, next, 'User');
+};
+
 exports.verifyAdmin = async (req, res, next) => {
+    verifyToken(req, res, next, 'Admin');
+};
+
+exports.renderLogin = async (req, res) => {
     try {
-        const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
-
-        if (token == null || undefined) {
-            return res.status(401).end();
-        }
-
-        jwt.verify(token, config.jwtSecret, (error, user) => {
-            if (user.type === 'Admin' && !error) {
-                next();
-            } else {
-                return res.status(401).end();
-            }
+        return res.status(200).render('../views/loginView.ejs', {
+            collegeName: config.collegeName,
         });
     } catch (error) {
         res.status(500).end();
-        console.error(error);
+        console.error(error.message);
     }
 };
