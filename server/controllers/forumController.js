@@ -1,3 +1,4 @@
+const {Sequelize} = require('sequelize');
 const {Post, Comment} = require('../utils/sqlHandler');
 
 exports.addPost = async (req, res) => {
@@ -5,7 +6,10 @@ exports.addPost = async (req, res) => {
         const {title, content, poster} = req.body;
         await Post.create({title, content, poster});
 
-        res.status(201).end();
+        res.status(201).json({
+            success: true,
+            message: 'Sucessfully posted!',
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -18,7 +22,8 @@ exports.addPost = async (req, res) => {
 
 exports.addComment = async (req, res) => {
     try {
-        const {postId, content, poster} = req.body;
+        const {content, poster} = req.body;
+        const postId = req.params.postId;
         await Comment.create({postId, content, poster});
         res.status(201).end();
     } catch (error) {
@@ -33,7 +38,22 @@ exports.addComment = async (req, res) => {
 exports.getPosts = async (req, res) => {
     try {
         const posts = await Post.findAll({
-            attributes: ['id', 'title', 'content', 'poster'],
+            attributes: [
+                'id',
+                'title',
+                'content',
+                'poster',
+                [
+                    Sequelize.fn('COUNT', Sequelize.col('comments.id')),
+                    'commentCount',
+                ],
+            ],
+            include: [
+                {
+                    model: Comment,
+                    as: 'comments',
+                },
+            ],
         });
         res.status(200).send(posts);
     } catch (error) {
@@ -57,6 +77,30 @@ exports.getComments = async (req, res) => {
             message: 'Error getting comments.',
             error: error.message,
         });
+    }
+};
+
+exports.getPost = async (req, res) => {
+    try {
+        const post = await Post.findOne({
+            where: {
+                id: req.params.postId,
+            },
+            include: {model: Comment, as: 'comments'},
+        });
+
+        if (post) {
+            return res.status(200).send(post);
+        } else {
+            return res.status(404).end();
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error getting post',
+            error: error.message,
+        });
+        console.error;
     }
 };
 

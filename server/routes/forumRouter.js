@@ -23,8 +23,10 @@ forumRouter.get('/list_posts', forumController.getPosts);
 
 forumRouter.get('/list_comments', forumController.getComments);
 
+forumRouter.get('/post/:postId/', forumController.getPost);
+
 forumRouter.post('/add_post', forumController.addPost);
 
-forumRouter.post('/add_comment', forumController.addComment);
+forumRouter.post('/post/:postId/add_comment', forumController.addComment);
 
 module.exports = forumRouter;
