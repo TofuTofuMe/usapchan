@@ -5,7 +5,7 @@ import ForumScreen from './ForumScreen';
 import HandbookScreen from './HandbookScreen';
 import LoginScreen from './LoginScreen';
 import RegistrationScreen from './RegistrationScreen';
-import DownloadablesScreen from './DownloadblesScreen';
+import DownloadablesScreen from './DownloadablesScreen';
 
 export {
     HomeScreen,

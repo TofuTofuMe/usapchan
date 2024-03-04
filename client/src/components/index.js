@@ -5,6 +5,7 @@ import Carousel from './Carousel';
 import HomeBanner from './HomeBanner';
 import ForumPostModal from './ForumPostModal';
 import DownloadablesList from './DownloadablesList';
+import DrawerNavigator from './DrawerNavigator';
 
 export {
     PopupModal,
@@ -15,4 +16,5 @@ export {
     HomeBanner,
     ForumPostModal,
     DownloadablesList,
+    DrawerNavigator,
 };

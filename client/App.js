@@ -13,10 +13,12 @@ import {
     HandbookScreen,
     LoginScreen,
     RegistrationScreen,
+    DownloadablesScreen,
 } from './src/screens';
 import Feather from 'react-native-vector-icons/Feather';
 import {useAtomValue, useSetAtom} from 'jotai';
 import {loginStateAtom, userDataAtom} from './src/stores';
+import {DrawerNavigator} from './src/components';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -26,7 +28,9 @@ const Drawer = () => {
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
     return (
-        <DrawerNav.Navigator screenOptions={{drawerStyle: {paddingTop: 75}}}>
+        <DrawerNav.Navigator
+            drawerContent={(props) => <DrawerNavigator {...props} />}
+        >
             <DrawerNav.Screen
                 name="DrawerHome"
                 component={HomeScreen}
@@ -41,6 +45,16 @@ const Drawer = () => {
             <DrawerNav.Screen
                 name="Handbook"
                 component={HandbookScreen}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#526d51',
+                    },
+                    headerTintColor: 'white',
+                }}
+            />
+            <DrawerNav.Screen
+                name="Downloadables"
+                component={DownloadablesScreen}
                 options={{
                     headerStyle: {
                         backgroundColor: '#526d51',
@@ -67,8 +81,8 @@ const Tab = () => {
     return (
         <BottomTab.Navigator
             screenOptions={{
-                tabBarActiveBackgroundColor: 'rgba(0,0,0,.1)',
-                tabBarInactiveBackgroundColor: 'white',
+                tabBarActiveBackgroundColor: 'rgba(55,100,75,1)',
+                tabBarInactiveBackgroundColor: '#526d51',
                 tabBarStyle: {
                     backgroundColor: 'white',
                 },
@@ -82,7 +96,7 @@ const Tab = () => {
                     headerShown: false,
                     tabBarLabel: () => null,
                     tabBarIcon: () => (
-                        <Feather name="home" size={25} color={'black'} />
+                        <Feather name="home" size={25} color={'white'} />
                     ),
                 }}
             />
@@ -95,7 +109,7 @@ const Tab = () => {
                         <Feather
                             name="message-square"
                             size={25}
-                            color={'black'}
+                            color={'white'}
                         />
                     ),
                     headerStyle: {
@@ -111,7 +125,7 @@ const Tab = () => {
                     title: 'Forum',
                     tabBarLabel: () => null,
                     tabBarIcon: () => (
-                        <Feather name="edit" size={25} color={'black'} />
+                        <Feather name="edit" size={25} color={'white'} />
                     ),
                     headerStyle: {
                         backgroundColor: '#526d51',
