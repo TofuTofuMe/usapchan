@@ -52,8 +52,10 @@ exports.getPosts = async (req, res) => {
                 {
                     model: Comment,
                     as: 'comments',
+                    attributes: [],
                 },
             ],
+            group: ['Post.id'],
         });
         res.status(200).send(posts);
     } catch (error) {
