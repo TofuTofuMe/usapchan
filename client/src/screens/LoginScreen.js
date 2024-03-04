@@ -60,16 +60,12 @@ const LoginScreen = ({navigation}) => {
                             }
                         />
                     </View>
-                    <View style={{marginTop: 20}}>
+                    <View style={LoginStyle.loginContainer}>
                         <Pressable
                             style={({pressed}) => [
+                                LoginStyle.loginPressable,
                                 {
                                     backgroundColor: pressed ? 'white' : 'gray',
-                                    padding: 10,
-                                    borderRadius: 5,
-                                    elevation: 3,
-                                    width: 100,
-                                    alignItems: 'center',
                                 },
                             ]}
                             onPress={async () => {
@@ -95,7 +91,7 @@ const LoginScreen = ({navigation}) => {
                         </Pressable>
                     </View>
 
-                    <View style={{alignItems: 'center', marginTop: -15}}>
+                    <View style={LoginStyle.bottomContainer}>
                         <Text style={LoginStyle.footerText}>
                             Don't have an account?
                         </Text>

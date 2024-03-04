@@ -9,6 +9,13 @@ const RegistrationStyle = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    headerContainer: {
+        justifyContent: 'center',
+    },
     headerText: {
         ...material.display2Black,
         fontSize: 40,
@@ -19,7 +26,9 @@ const RegistrationStyle = StyleSheet.create({
     inputLabel: {
         marginBottom: 10,
         alignSelf: 'flex-start',
-        paddingLeft: 20,
+    },
+    nameInputContainer: {
+        flexDirection: 'row',
     },
     inputName: {
         backgroundColor: 'white',
@@ -43,6 +52,13 @@ const RegistrationStyle = StyleSheet.create({
     },
     pressableView: {
         marginTop: 20,
+        alignItems: 'center',
+    },
+    signupPressable: {
+        padding: 10,
+        borderRadius: 5,
+        elevation: 3,
+        width: 100,
         alignItems: 'center',
     },
     text: {

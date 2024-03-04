@@ -30,22 +30,13 @@ const ChatScreen = () => {
         <View style={Style.flexView}>
             {showIntro && (
                 <View style={Style.body}>
-                    <View style={{flexDirection: 'row', flex: 1}}>
-                        <View style={{flex: 1}}>
-                            <Text style={Style.bodyText}>
-                                Hi Student, Usapchan is here! Your college life
-                                companion.
-                            </Text>
-                        </View>
+                    <View style={Style.bodyContainer}>
+                        <Text style={Style.bodyText}>
+                            Hi Student, Usapchan is here! Your college life
+                            companion.
+                        </Text>
 
-                        <View
-                            style={{
-                                flex: 1,
-                                position: 'absolute',
-                                marginLeft: 100,
-                                marginTop: 50,
-                            }}
-                        >
+                        <View style={Style.mascotContainer}>
                             <Image
                                 source={require('../assets/chatMascot.png')}
                                 style={Style.chatMascot}
@@ -65,7 +56,7 @@ const ChatScreen = () => {
                     ))}
             </ScrollView>
             <View style={Style.bottomView}>
-                <View style={{flex: 1, marginBottom: 5}}>
+                <View style={Style.inputContainer}>
                     <TextInput
                         style={Style.textInput}
                         enterKeyHint="enter"

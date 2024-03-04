@@ -20,25 +20,14 @@ const HomeScreen = () => {
                     textTwo: 'Your college companion is here!',
                 }}
             />
-            <View
-                style={{
-                    marginTop: 10,
-                    padding: 10,
-                }}
-            >
-                <View style={{flexDirection: 'row', padding: 5}}>
-                    <Text style={HomeStyle.announcementText}>Announcement</Text>
-                </View>
-            </View>
             <HomeHighlight
                 title="Title"
                 date="January 1, 1970"
                 author="Author"
                 body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin augue nec fringilla varius. Mauris elementum nec ligula eget blandit. Donec consequat euismod pharetra. Pellentesque quis lorem mi. Nulla placerat eleifend cursus. Duis tristique blandit sem nec gravida. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam at nibh id justo finibus varius sit amet id elit."
             />
-            <View style={{marginTop: 15}}>
-                <Carousel images={images} />
-            </View>
+
+            <Carousel images={images} />
         </ScrollView>
     );
 };

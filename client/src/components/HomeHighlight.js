@@ -14,7 +14,7 @@ const HomeHighlight = ({title, date, author, body}) => {
         body.length > 150 && !showBody ? `${displayBody}...` : displayBody;
 
     return (
-        <View style={{width: '100%'}}>
+        <View>
             <View style={HomeStyle.announcementContent}>
                 <View>
                     <Image
@@ -31,19 +31,11 @@ const HomeHighlight = ({title, date, author, body}) => {
                         <Pressable
                             onPress={toggleBodyDisplay}
                             style={({pressed}) => [
-                                {
-                                    backgroundColor: '#99BC85',
-                                    width: 200,
-                                    padding: 10,
-                                    borderRadius: 5,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    alignSelf: 'center',
-                                    marginTop: -30,
-                                },
+                                HomeStyle.textPressable,
                                 pressed && {opacity: 0.5},
-                            ]}>
-                            <Text style={{color: 'white', fontWeight: 'bold'}}>
+                            ]}
+                        >
+                            <Text style={HomeStyle.pressableText}>
                                 {showBody ? 'See less' : 'See more'}
                             </Text>
                         </Pressable>

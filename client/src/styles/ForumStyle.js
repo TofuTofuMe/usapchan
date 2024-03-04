@@ -21,14 +21,26 @@ const ForumStyle = StyleSheet.create({
         padding: 10,
         color: 'black',
     },
-    mediaContainer: {
+    pressableRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 30,
+    },
+    photoPressable: {
         width: '85%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 20,
     },
-    nextMediaContainer: {
+    pressableText: {
+        ...material.body1,
+        fontSize: 16,
+        marginLeft: 5,
+    },
+    postPressable: {
         width: '85%',
         height: '55%',
         flexDirection: 'row',
@@ -37,17 +49,7 @@ const ForumStyle = StyleSheet.create({
         backgroundColor: 'rgba(52, 52, 52, 0.2)',
         borderRadius: 5,
     },
-    addMediaText: {
-        ...material.body1,
-        fontSize: 16,
-        marginLeft: 5,
-    },
-    title: {
-        paddingLeft: 5,
-        fontWeight: '500',
-        color: 'black',
-    },
-    post: {
+    postContainer: {
         flex: 1,
         paddingVertical: 25,
         paddingHorizontal: 25,
@@ -62,8 +64,57 @@ const ForumStyle = StyleSheet.create({
         marginBottom: 5,
         color: 'black',
     },
+    title: {
+        paddingLeft: 5,
+        fontWeight: '500',
+        color: 'black',
+    },
+    body: {
+        marginBottom: 10,
+        paddingLeft: 5,
+        paddingVertical: 30,
+        color: 'black',
+    },
+    postCounters: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignSelf: 'flex-start',
+        paddingRight: 20,
+    },
+    counterContainer: {
+        flexDirection: 'row',
+    },
+    counterText: {
+        color: 'black',
+        marginHorizontal: 5,
+        fontSize: 15,
+    },
+    commentContainer: {
+        padding: 10,
+    },
     commentPoster: {
         ...material.title,
+        fontSize: 15,
+        color: 'black',
+    },
+    commentContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignSelf: 'flex-start',
+        paddingRight: 20,
+    },
+    commentContent: {
+        marginBottom: 10,
+        paddingLeft: 5,
+        paddingVertical: 10,
+        color: 'black',
+    },
+    likeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    likeCount: {
+        marginHorizontal: 5,
         fontSize: 15,
         color: 'black',
     },
@@ -82,9 +133,6 @@ const ForumStyle = StyleSheet.create({
         marginTop: 30,
         backgroundColor: materialColors.whiteSecondary,
         color: materialColors.blackPrimary,
-    },
-    featherNum: {
-        color: 'black',
     },
 });
 

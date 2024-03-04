@@ -29,29 +29,13 @@ const ForumPost = ({posts}) => {
         <ScrollView>
             {posts.map((post, index) => (
                 <Pressable key={index} onPress={() => handlePostPress(post)}>
-                    <View style={ForumStyle.post}>
+                    <View style={ForumStyle.postContainer}>
                         <Text style={ForumStyle.userName}>{post.poster}</Text>
                         <Text style={ForumStyle.title}>{post.title}</Text>
-                        <Text
-                            style={{
-                                marginBottom: 10,
-                                paddingLeft: 5,
-                                paddingVertical: 30,
-                                color: 'black',
-                            }}
-                        >
-                            {post.body}
-                        </Text>
+                        <Text style={ForumStyle.body}>{post.body}</Text>
 
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                alignSelf: 'flex-start',
-                                paddingRight: 20,
-                            }}
-                        >
-                            <View style={{flexDirection: 'row'}}>
+                        <View style={ForumStyle.postCounters}>
+                            <View style={ForumStyle.counterContainer}>
                                 <Pressable
                                     style={({pressed}) => [
                                         pressed && {opacity: 0.5},
@@ -63,17 +47,9 @@ const ForumPost = ({posts}) => {
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text
-                                    style={[
-                                        ForumStyle.featherNum,
-                                        {marginHorizontal: 5},
-                                        {fontSize: 15},
-                                    ]}
-                                >
-                                    0
-                                </Text>
+                                <Text style={ForumStyle.counterText}>0</Text>
                             </View>
-                            <View style={{flexDirection: 'row'}}>
+                            <View style={ForumStyle.counterContainer}>
                                 <Pressable
                                     style={({pressed}) => [
                                         pressed && {opacity: 0.5},
@@ -87,17 +63,9 @@ const ForumPost = ({posts}) => {
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text
-                                    style={[
-                                        ForumStyle.featherNum,
-                                        {marginHorizontal: 5},
-                                        {fontSize: 15},
-                                    ]}
-                                >
-                                    0
-                                </Text>
+                                <Text style={ForumStyle.counterText}>0</Text>
                             </View>
-                            <View style={{flexDirection: 'row'}}>
+                            <View style={ForumStyle.counterContainer}>
                                 <Pressable
                                     style={({pressed}) => [
                                         pressed && {opacity: 0.5},
@@ -109,15 +77,7 @@ const ForumPost = ({posts}) => {
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text
-                                    style={[
-                                        ForumStyle.featherNum,
-                                        {marginHorizontal: 5},
-                                        {fontSize: 15},
-                                    ]}
-                                >
-                                    0
-                                </Text>
+                                <Text style={ForumStyle.counterText}>0</Text>
                             </View>
                         </View>
                     </View>

@@ -22,6 +22,20 @@ const LoginStyle = StyleSheet.create({
         fontSize: 50,
         color: 'white',
     },
+    loginContainer: {
+        marginTop: 20,
+    },
+    loginPressable: {
+        padding: 10,
+        borderRadius: 5,
+        elevation: 3,
+        width: 100,
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        alignItems: 'center',
+        marginTop: -15,
+    },
     input: {
         backgroundColor: 'white',
         width: 300,

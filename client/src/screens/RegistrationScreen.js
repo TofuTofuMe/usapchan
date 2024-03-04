@@ -22,17 +22,17 @@ const RegistrationScreen = ({navigation}) => {
                 resizeMode="cover"
                 style={RegistrationStyle.imageBackground}
             >
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={RegistrationStyle.headerText}>
-                        REGISTRATION
-                    </Text>
-                    <View
-                        style={{alignItems: 'center', justifyContent: 'center'}}
-                    >
+                <View style={RegistrationStyle.container}>
+                    <View style={RegistrationStyle.headerContainer}>
+                        <Text style={RegistrationStyle.headerText}>
+                            REGISTRATION
+                        </Text>
+                    </View>
+                    <View style={RegistrationStyle.container}>
                         <View style={RegistrationStyle.inputLabel}>
                             <Text style={RegistrationStyle.text}>Name</Text>
                         </View>
-                        <View style={{flexDirection: 'row'}}>
+                        <View style={RegistrationStyle.nameInputContainer}>
                             <TextInput
                                 style={[
                                     RegistrationStyle.inputName,
@@ -121,15 +121,11 @@ const RegistrationScreen = ({navigation}) => {
                         <View style={RegistrationStyle.pressableView}>
                             <Pressable
                                 style={({pressed}) => [
+                                    RegistrationStyle.signupPressable,
                                     {
                                         backgroundColor: pressed
                                             ? 'white'
                                             : 'gray',
-                                        padding: 10,
-                                        borderRadius: 5,
-                                        elevation: 3,
-                                        width: 100,
-                                        alignItems: 'center',
                                     },
                                 ]}
                                 onPress={async () => {

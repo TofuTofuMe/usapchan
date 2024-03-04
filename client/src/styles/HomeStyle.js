@@ -25,17 +25,7 @@ const HomeStyle = StyleSheet.create({
         ...material.body2,
         flex: 1,
         width: '100%',
-        paddingBottom: 15,
-    },
-    announcementText: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingLeft: 30,
-        marginBottom: 10,
-        ...material.body2,
-        fontSize: 22,
-        fontWeight: 'normal',
-        color: 'black',
+        paddingVertical: 15,
     },
     announcementImage: {
         width: '100%',
@@ -71,6 +61,20 @@ const HomeStyle = StyleSheet.create({
         marginBottom: 50,
         color: 'black',
     },
+    textPressable: {
+        backgroundColor: '#99BC85',
+        width: 200,
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginTop: -30,
+    },
+    pressableText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
     calendarView: {
         flex: 1,
         backgroundColor: '#99BC85',
@@ -104,7 +108,10 @@ const HomeStyle = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    pagination: {
+    carouselContainer: {
+        flex: 1,
+    },
+    paginationContainer: {
         flexDirection: 'row',
         position: 'absolute',
         bottom: 10,

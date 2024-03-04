@@ -12,6 +12,7 @@ const Style = StyleSheet.create({
     },
     bodyView: {
         flex: 1,
+        flexDirection: 'row',
         padding: 15,
         marginLeft: 15,
         marginRight: 15,
@@ -19,6 +20,10 @@ const Style = StyleSheet.create({
     bottomView: {
         flexDirection: 'row',
         marginTop: 'auto',
+    },
+    inputContainer: {
+        flex: 1,
+        marginBottom: 5,
     },
     welcomeText: {
         ...robotoWeights.condensed,
@@ -156,6 +161,10 @@ const Style = StyleSheet.create({
         marginTop: 100,
         textAlign: 'justify',
     },
+    bodyContainer: {
+        flexDirection: 'row',
+        flex: 1,
+    },
     bodyContent: {
         flexDirection: 'row',
     },
@@ -167,6 +176,12 @@ const Style = StyleSheet.create({
         fontSize: 26,
         lineHeight: 30,
         textAlign: 'center',
+    },
+    mascotContainer: {
+        flex: 1,
+        position: 'absolute',
+        marginLeft: 100,
+        marginTop: 50,
     },
     bottom: {
         flex: 1,

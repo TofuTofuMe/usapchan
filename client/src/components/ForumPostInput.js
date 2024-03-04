@@ -13,25 +13,17 @@ const ForumPostInput = () => {
                 placeholder={`What's on your mind?`}
                 placeholderTextColor={'gray'}
             />
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 30,
-                }}
-            >
+            <View style={ForumStyle.pressableRow}>
                 <Pressable style={({pressed}) => [pressed && {opacity: 0.5}]}>
-                    <View style={ForumStyle.mediaContainer}>
+                    <View style={ForumStyle.photoPressable}>
                         <Feather name="image" size={25} color="black" />
-                        <Text style={ForumStyle.addMediaText}>Add photo</Text>
+                        <Text style={ForumStyle.pressableText}>Add photo</Text>
                     </View>
                 </Pressable>
                 <Pressable style={({pressed}) => [pressed && {opacity: 0.5}]}>
-                    <View style={ForumStyle.nextMediaContainer}>
+                    <View style={ForumStyle.postPressable}>
                         <Feather name="edit" size={25} color="black" />
-                        <Text style={ForumStyle.addMediaText}>Post</Text>
+                        <Text style={ForumStyle.pressableText}>Post</Text>
                     </View>
                 </Pressable>
             </View>

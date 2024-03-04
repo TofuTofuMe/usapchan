@@ -22,21 +22,22 @@ const Carousel = ({images}) => {
         return () => clearInterval(interval);
     }, [currentIndex, images.length, setCurrentIndex]);
 
-    const handleScroll = event => {
+    const handleScroll = (event) => {
         const imageOffset = event.nativeEvent.contentOffset.x;
         const index = Math.round(imageOffset / width);
         setCurrentIndex(index);
     };
 
     return (
-        <View style={HomeStyle.flexView}>
+        <View style={HomeStyle.carouselContainer}>
             <ScrollView
                 ref={scrollViewRef}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
                 onScroll={handleScroll}
-                scrollEventThrottle={16}>
+                scrollEventThrottle={16}
+            >
                 {images.map((image, index) => (
                     <Image
                         key={index}
@@ -49,7 +50,7 @@ const Carousel = ({images}) => {
                     />
                 ))}
             </ScrollView>
-            <View style={HomeStyle.pagination}>
+            <View style={HomeStyle.paginationContainer}>
                 {images.map((_, index) => (
                     <View
                         key={index}

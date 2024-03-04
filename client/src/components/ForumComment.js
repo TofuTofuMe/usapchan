@@ -11,27 +11,9 @@ const ForumComment = ({comments}) => {
                     <Text style={ForumStyle.commentPoster}>
                         {comment.poster}
                     </Text>
-                    <Text
-                        style={{
-                            marginBottom: 10,
-                            paddingLeft: 5,
-                            paddingVertical: 10,
-                            color: 'black',
-                        }}
-                    >
-                        {comment.content}
-                    </Text>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignSelf: 'flex-start',
-                            paddingRight: 20,
-                        }}
-                    >
-                        <View
-                            style={{flexDirection: 'row', alignItems: 'center'}}
-                        >
+                    <Text style={ForumStyle.body}>{comment.content}</Text>
+                    <View style={ForumStyle.commentContainer}>
+                        <View style={ForumStyle.counterContainer}>
                             <Pressable
                                 style={({pressed}) => [
                                     pressed && {opacity: 0.5},
@@ -39,15 +21,7 @@ const ForumComment = ({comments}) => {
                             >
                                 <Feather name="heart" size={20} color="black" />
                             </Pressable>
-                            <Text
-                                style={[
-                                    ForumStyle.featherNum,
-                                    {marginHorizontal: 5},
-                                    {fontSize: 15},
-                                ]}
-                            >
-                                0
-                            </Text>
+                            <Text style={ForumStyle.counterText}>0</Text>
                         </View>
                     </View>
                 </View>
