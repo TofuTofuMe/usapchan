@@ -4,6 +4,7 @@ import HomeHighlight from './HomeHighlight';
 import Carousel from './Carousel';
 import HomeBanner from './HomeBanner';
 import ForumPostModal from './ForumPostModal';
+import DownloadablesList from './DownloadablesList';
 
 export {
     PopupModal,
@@ -13,4 +14,5 @@ export {
     Carousel,
     HomeBanner,
     ForumPostModal,
+    DownloadablesList,
 };
