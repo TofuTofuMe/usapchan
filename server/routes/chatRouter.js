@@ -1,32 +1,34 @@
 const express = require('express');
 const config = require('../config.json');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const chatController = require('../controllers/chatController');
+const {verifyUser, verifyAdmin} = require('../controllers/userController');
 
 var chatRouter = express.Router();
 
-chatRouter.use(bodyParser.urlencoded({extended: false}));
 chatRouter.use(bodyParser.json());
+chatRouter.use(cookieParser());
 
-chatRouter.get('/', (req, res) => {
+chatRouter.get('/', verifyUser, (req, res) => {
     res.status(200).end();
 });
 
-chatRouter.get('/manage', (req, res) => {
+chatRouter.post('/send_chat', verifyUser, chatController.sendChat);
+
+chatRouter.get('/manage', verifyAdmin, (req, res) => {
     res.render('chatView.ejs', {collegeName: config.collegeName});
 });
 
-chatRouter.get('/list_corpus', chatController.getCorpus);
+chatRouter.get('/list_corpus', verifyAdmin, chatController.getCorpus);
 
-chatRouter.post('/add_corpus', chatController.addCorpus);
+chatRouter.post('/add_corpus', verifyAdmin, chatController.addCorpus);
 
-chatRouter.post('/update_corpus', chatController.updateCorpus);
+chatRouter.post('/update_corpus', verifyAdmin, chatController.updateCorpus);
 
-chatRouter.post('/send_chat', chatController.sendChat);
+chatRouter.get('/train_nlp', verifyAdmin, chatController.trainNlp);
 
-chatRouter.get('/train_nlp', chatController.trainNlp);
-
-chatRouter.post('/drop_corpus', chatController.dropCorpus);
+chatRouter.post('/drop_corpus', verifyAdmin, chatController.dropCorpus);
 
 module.exports = chatRouter;
