@@ -11,12 +11,11 @@ const messagesAtom = atomWithStorage(
     [
         {
             id: Date.now() + Math.random().toString(),
-            text: 'Hi! How can Usapchan you?',
+            text: 'Hi! How can I help you?',
             user: false,
-            attachment: false,
         },
     ],
-    storage,
+    storage
 );
 const showIntroAtom = atom(true);
 

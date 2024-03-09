@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
     View,
     ScrollView,
@@ -6,59 +6,78 @@ import {
     Pressable,
     Text,
     Image,
+    Keyboard,
 } from 'react-native';
-import {useAtom, useSetAtom} from 'jotai';
-import {
-    messagesAtom,
-    textInputAtom,
-    textOutputAtom,
-    showIntroAtom,
-} from '../stores';
+import {useAtom} from 'jotai';
+import {messagesAtom, textInputAtom, showIntroAtom} from '../stores';
 import Feather from 'react-native-vector-icons/Feather';
-import Style from '../Style';
-import {trainNlp, processText} from '../utils/NlpHandler';
-import {ChatBubble, addMessage} from '../components/';
-
-trainNlp();
+import ChatStyle from '../styles/ChatStyle';
+import {ChatBubble, addMessage} from '../components';
+import {sendChat} from '../utils';
+import {userTokenAtom} from '../stores';
+import {useAtomValue} from 'jotai';
 
 const ChatScreen = () => {
     const [textInput, setTextInput] = useAtom(textInputAtom);
-    const setTextOutput = useSetAtom(textOutputAtom);
     const [messages, setMessages] = useAtom(messagesAtom);
     const [showIntro, setShowIntro] = useAtom(showIntroAtom);
+    const userToken = useAtomValue(userTokenAtom);
+    const scrollRef = useRef();
+
+    const goChat = async () => {
+        addMessage(setMessages, {
+            text: textInput,
+            user: true,
+        });
+        setTextInput('');
+        setShowIntro(false);
+        const response = await sendChat(textInput, userToken);
+        addMessage(setMessages, {
+            text: response.answer ? response.answer : 'No response',
+            user: false,
+        });
+        Keyboard.dismiss();
+    };
+
     return (
-        <View style={Style.flexView}>
+        <View style={ChatStyle.flexView}>
             {showIntro && (
-                <View style={Style.body}>
-                    <View style={Style.bodyContainer}>
-                        <Text style={Style.bodyText}>
+                <View style={ChatStyle.introBodyContainer}>
+                    <View style={ChatStyle.introBody}>
+                        <Text style={ChatStyle.introText}>
                             Hi Student, Usapchan is here! Your college life
                             companion.
                         </Text>
 
-                        <View style={Style.mascotContainer}>
+                        <View style={ChatStyle.mascotContainer}>
                             <Image
                                 source={require('../assets/chatMascot.png')}
-                                style={Style.chatMascot}
+                                style={ChatStyle.chatMascot}
                             />
                         </View>
                     </View>
                 </View>
             )}
-            <ScrollView style={Style.bodyView}>
+            <ScrollView
+                ref={scrollRef}
+                style={ChatStyle.chatView}
+                onContentSizeChange={() =>
+                    scrollRef.current.scrollToEnd({animated: true})
+                }
+            >
                 {!showIntro &&
-                    messages.map((msg) => (
+                    messages.map((message) => (
                         <ChatBubble
-                            key={msg.id}
-                            text={msg.text}
-                            user={msg.user}
+                            key={message.id}
+                            text={message.text}
+                            user={message.user}
                         />
                     ))}
             </ScrollView>
-            <View style={Style.bottomView}>
-                <View style={Style.inputContainer}>
+            <View style={ChatStyle.bottomView}>
+                <View style={ChatStyle.inputContainer}>
                     <TextInput
-                        style={Style.textInput}
+                        style={ChatStyle.textInput}
                         enterKeyHint="enter"
                         multiline
                         value={textInput}
@@ -69,32 +88,14 @@ const ChatScreen = () => {
                         }
                     />
                 </View>
-                <View style={{marginTop: 'auto'}}>
+                <View style={ChatStyle.bottomView}>
                     <Pressable
                         style={({pressed}) => [
-                            Style.pressable,
-                            pressed && Style.pressablePressed,
+                            ChatStyle.pressable,
+                            pressed && ChatStyle.pressablePressed,
                             {marginBottom: 15, marginRight: 15},
                         ]}
-                        disabled={textInput === '' ? true : false}
-                        onPress={async () => {
-                            addMessage(setMessages, {
-                                text: textInput,
-                                user: true,
-                            });
-                            const reply = await processText(
-                                textInput,
-                                setTextOutput,
-                                addMessage,
-                                setMessages
-                            );
-                            setTextInput('');
-                            addMessage(setMessages, {
-                                text: reply.answer,
-                                user: false,
-                            });
-                            setShowIntro(false);
-                        }}
+                        onPress={goChat}
                     >
                         <Feather name="send" size={25} color="black" />
                     </Pressable>
