@@ -18,7 +18,6 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "jotai": "^2.5.1",
-    "node-nlp-rn": "^3.5.2",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-android-notification-listener": "^5.0.1",

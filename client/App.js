@@ -27,6 +27,7 @@ const DrawerNav = createDrawerNavigator();
 const Drawer = () => {
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
+
     return (
         <DrawerNav.Navigator
             drawerContent={(props) => <DrawerNavigator {...props} />}
@@ -152,10 +153,6 @@ const App = () => {
                         <Stack.Screen
                             name="Settings"
                             component={SettingScreen}
-                        />
-                        <Stack.Screen
-                            name="Paraphrase"
-                            component={ChatScreen}
                         />
                     </>
                 ) : (
