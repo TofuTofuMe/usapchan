@@ -25,7 +25,10 @@ exports.addComment = async (req, res) => {
         const {content, poster} = req.body;
         const postId = req.params.postId;
         await Comment.create({postId, content, poster});
-        res.status(201).end();
+        res.status(201).json({
+            success: true,
+            message: 'Successfully commented!',
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -43,6 +46,7 @@ exports.getPosts = async (req, res) => {
                 'title',
                 'content',
                 'poster',
+                'createdAt',
                 [
                     Sequelize.fn('COUNT', Sequelize.col('comments.id')),
                     'commentCount',
@@ -70,7 +74,7 @@ exports.getPosts = async (req, res) => {
 exports.getComments = async (req, res) => {
     try {
         const comments = await Comment.findAll({
-            attributes: ['id', 'postId', 'content', 'poster'],
+            attributes: ['id', 'postId', 'content', 'poster', 'createdAt'],
         });
         res.status(200).send(comments);
     } catch (error) {
@@ -125,7 +129,10 @@ exports.dropPost = async (req, res) => {
             });
         }
         await post.destroy();
-        res.status(200).end;
+        res.status(200).json({
+            success: true,
+            message: 'Successfully dropped post',
+        });
     } catch {
         res.status(500).json({
             success: false,
@@ -154,7 +161,10 @@ exports.dropComment = async (req, res) => {
             });
         }
         await comment.destroy();
-        res.status(200).end();
+        res.status(200).json({
+            success: true,
+            message: 'Successfully dropped comment',
+        });
     } catch (error) {
         res.status(500).json({
             success: false,

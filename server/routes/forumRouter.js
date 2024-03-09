@@ -15,9 +15,9 @@ forumRouter.get('/', verifyUser, (req, res) => {
     res.status(200).end();
 });
 
-forumRouter.get('/list_posts', verifyUser, forumController.getPosts);
+forumRouter.get('/get_posts', verifyUser, forumController.getPosts);
 
-forumRouter.get('/list_comments', verifyUser, forumController.getComments);
+forumRouter.get('/get_comments', verifyUser, forumController.getComments);
 
 forumRouter.get('/post/:postId/', verifyUser, forumController.getPost);
 
@@ -34,5 +34,9 @@ forumRouter.get('/manage', verifyAdmin, (req, res) => {
         collegeName: config.collegeName,
     });
 });
+
+forumRouter.post('/drop_post', verifyAdmin, forumController.dropPost);
+
+forumRouter.post('/drop_comment', verifyAdmin, forumController.dropComment);
 
 module.exports = forumRouter;
