@@ -83,7 +83,7 @@ exports.sendChat = async (req, res) => {
         const {message} = req.body;
         const reply = await nlpHandler.processText(message);
 
-        res.status(200).json(reply);
+        res.status(200).json({success: true, answer: reply.answer});
     } catch (error) {
         res.status(500).json({
             success: false,
