@@ -1,4 +1,24 @@
 fetchTableData('Corpus').then(() => {
+    const answerEditor = new EasyMDE({
+        element: document.getElementById('answer'),
+        toolbar: [
+            'bold',
+            'italic',
+            'heading',
+            'quote',
+            'unordered-list',
+            'ordered-list',
+            'link',
+            'image',
+            'table',
+            'preview',
+            'side-by-side',
+            'fullscreen',
+            'guide',
+        ],
+        forceSync: true,
+    });
+
     setupTable('Corpus', '#chat-table-body').then(() => {
         setupSelectorOptions('corpusSelect', 'Corpus', 'corpusId');
         handleSelectorChange(
@@ -19,5 +39,11 @@ fetchTableData('Corpus').then(() => {
         );
         setupChat('message', 'sendChat', 'response');
         setupTraining('trainResult', 'trainNlp');
+
+        const answerField = document.getElementById('answer');
+
+        answerField.addEventListener('change', () => {
+            answerEditor.value(answerField.value);
+        });
     });
 });

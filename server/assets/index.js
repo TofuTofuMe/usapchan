@@ -102,6 +102,7 @@ function handleSelectorChange(
                         `${fieldId}-${selector.selectedIndex - 1}`
                     ).innerHTML;
                 }
+                formField.dispatchEvent(new Event('change'));
             });
 
             if (selector.value !== 'new') {
