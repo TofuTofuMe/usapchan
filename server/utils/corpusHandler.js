@@ -1,4 +1,33 @@
 const sqlHandler = require('./sqlHandler');
+const json2md = require('json2md');
+
+const createScheduleTable = (faculty, schedules, day = NaN) => {
+    if (schedules.length) {
+    if (!day) {
+        var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s overall schedule:\n`;
+    } else {
+        var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s schedule on ${day}:\n`;
+        }
+    } else {
+        return `${faculty.rank} ${faculty.name} does not have a schedule.`;
+    }
+
+    scheduleText += json2md([
+        {
+            table: {
+                headers: ['Day', 'Room', 'Section', 'Code', 'Time'],
+                rows: schedules.map((schedule) => [
+                    schedule.day,
+                    schedule.room,
+                    schedule.section,
+                    schedule.courseCode,
+                    schedule.startTime + '-' + schedule.endTime,
+                ]),
+            },
+        },
+    ]);
+    return scheduleText;
+};
 
 const addDatabaseCorpus = async (nlpManager) => {
     try {
@@ -18,10 +47,12 @@ const addDatabaseCorpus = async (nlpManager) => {
 
 const addFaculty = async (nlpManager) => {
     const faculties = await sqlHandler.Faculty.findAll({
+        attributes: {exclude: ['createdAt', 'updatedAt']},
         include: [
             {
                 model: sqlHandler.Schedule,
                 as: 'schedules',
+                attributes: {exclude: ['createdAt', 'updatedAt']},
                 include: [sqlHandler.Course],
             },
         ],
@@ -39,7 +70,7 @@ const addFaculty = async (nlpManager) => {
     ];
 
     faculties.forEach((faculty, index) => {
-        faculties_lower.push(faculty.name.split(' ')[0].toLowerCase());
+        faculties_lower.push(faculty.name.replace(/ /g, '').toLowerCase());
 
         nlpManager.addDocument(
             'en',
@@ -49,7 +80,7 @@ const addFaculty = async (nlpManager) => {
         nlpManager.addAnswer(
             'en',
             `ask.faculty.schedule.${faculties_lower[index]}.all`,
-            `${faculty.schedules}`
+            `${createScheduleTable(faculty, faculty.schedules)}`
         );
 
         days.forEach((day) => {
@@ -65,7 +96,7 @@ const addFaculty = async (nlpManager) => {
                 nlpManager.addAnswer(
                     'en',
                     `ask.faculty.schedule.${faculties_lower[index]}.${day}`,
-                    `${JSON.stringify(daySchedules)}`
+                    `${createScheduleTable(faculty, daySchedules, day)}`
                 );
             } else {
                 nlpManager.addAnswer(
