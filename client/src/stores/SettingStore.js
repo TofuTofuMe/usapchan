@@ -22,6 +22,7 @@ const settingsAtom = atomWithStorage('settings', {}, storage);
 const modalAtom = atom({
     visibility: false,
     interactable: false,
+    loading: false,
     message: '',
 });
 
