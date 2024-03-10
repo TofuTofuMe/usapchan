@@ -36,7 +36,7 @@
         </tr>
     </thead>
     <tbody id="schedule-table-body"></tbody>
-    <% }; %> <% if (table == 'chat') { %>
+    <% }; %> <% if (table == 'corpus') { %>
     <thead>
         <tr>
             <th>ID</th>
@@ -44,8 +44,17 @@
             <th>Intent</th>
             <th>Query</th>
             <th>Answer</th>
+            <th>Query Count</th>
         </tr>
     </thead>
-    <tbody id="chat-table-body"></tbody>
+    <tbody id="corpus-table-body"></tbody>
+    <% }; %> <% if (table == 'unhandled-corpus') { %>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Query</th>
+        </tr>
+    </thead>
+    <tbody id="unhandled-corpus-table-body"></tbody>
     <% }; %>
 </table>

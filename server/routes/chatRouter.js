@@ -23,6 +23,12 @@ chatRouter.get('/manage', verifyAdmin, (req, res) => {
 
 chatRouter.get('/list_corpus', verifyAdmin, chatController.getCorpus);
 
+chatRouter.get(
+    '/list_unhandled',
+    verifyAdmin,
+    chatController.getUnhandledCorpus
+);
+
 chatRouter.post('/add_corpus', verifyAdmin, chatController.addCorpus);
 
 chatRouter.post('/update_corpus', verifyAdmin, chatController.updateCorpus);

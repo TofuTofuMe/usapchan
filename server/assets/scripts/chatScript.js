@@ -19,7 +19,8 @@ fetchTableData('Corpus').then(() => {
         forceSync: true,
     });
 
-    setupTable('Corpus', '#chat-table-body').then(() => {
+    setupTable('Corpus', '#corpus-table-body').then(() => {
+        setupTable('UnhandledCorpus', '#unhandled-corpus-table-body');
         setupSelectorOptions('corpusSelect', 'Corpus', 'corpusId');
         handleSelectorChange(
             'corpusSelect',

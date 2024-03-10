@@ -19,6 +19,11 @@ async function fetchTableData(tableId) {
                     method: 'GET',
                 });
                 break;
+            case 'UnhandledCorpus':
+                request = new Request('/chat/list_unhandled', {
+                    method: 'GET',
+                });
+                break;
             default:
                 reject(new Error('Invalid table ID given'));
                 break;

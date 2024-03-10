@@ -22,7 +22,24 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        queryCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
     });
 
-    return {Corpus};
+    const UnhandledCorpus = sequelize.define('UnhandledCorpus', {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            unique: true,
+            autoincrement: true,
+        },
+        query: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    });
+
+    return {Corpus, UnhandledCorpus};
 };

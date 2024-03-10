@@ -1,5 +1,5 @@
 const nlpHandler = require('../utils/nlpHandler');
-const {Corpus} = require('../utils/sqlHandler');
+const {Corpus, UnhandledCorpus} = require('../utils/sqlHandler');
 const {nanoid} = require('nanoid');
 
 exports.trainNlp = async (req, res) => {
@@ -48,6 +48,7 @@ exports.getCorpus = async (req, res) => {
                 'intent',
                 'query',
                 'answer',
+                'queryCount',
             ],
         });
         res.status(200).send(corpora);
@@ -55,6 +56,21 @@ exports.getCorpus = async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error fetching corpus.',
+            error: error.message,
+        });
+    }
+};
+
+exports.getUnhandledCorpus = async (req, res) => {
+    try {
+        const corpora = await UnhandledCorpus.findAll({
+            attributes: [['id', 'unhandledCorpusId'], 'query'],
+        });
+        res.status(200).send(corpora);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching unhandled query corpus.',
             error: error.message,
         });
     }
@@ -82,6 +98,30 @@ exports.sendChat = async (req, res) => {
     try {
         const {message} = req.body;
         const reply = await nlpHandler.processText(message);
+
+        const matchedCorpus = await Corpus.findOne({
+            where: {
+                intent: reply.intent,
+            },
+        });
+
+        if (matchedCorpus) {
+            if (matchedCorpus.intent == 'None') {
+                const duplicateQuery = await UnhandledCorpus.findOne({
+                    where: {
+                        query: message,
+                    },
+                });
+
+                if (!duplicateQuery) {
+                    await UnhandledCorpus.create({
+                        query: message,
+                    });
+                }
+            } else {
+                await matchedCorpus.increment('queryCount', {by: 1});
+            }
+        }
 
         res.status(200).json({success: true, answer: reply.answer});
     } catch (error) {
