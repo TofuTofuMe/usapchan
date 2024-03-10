@@ -20,6 +20,12 @@ import {
     postsAtom,
     commentsAtom,
 } from './ForumStore';
+import {
+    studentFilesAtom,
+    facultyFilesAtom,
+    studentOptionAtom,
+    facultyOptionAtom,
+} from './DownloadablesStore';
 
 export {
     loginStateAtom,
@@ -39,4 +45,8 @@ export {
     commentInputAtom,
     postsAtom,
     commentsAtom,
+    studentFilesAtom,
+    facultyFilesAtom,
+    studentOptionAtom,
+    facultyOptionAtom,
 };

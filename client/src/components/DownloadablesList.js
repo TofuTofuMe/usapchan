@@ -8,12 +8,12 @@ const DownloadablesList = ({files}) => {
         <ScrollView style={DownloadablesStyle.container}>
             {files.map((file, index) => (
                 <View style={DownloadablesStyle.fileContainer} key={index}>
-                    <View style={DownloadablesStyle.fileName}>
+                    <View style={DownloadablesStyle.filename}>
                         <Feather name="file-text" size={25} color="black" />
                         <Text
                             style={[DownloadablesStyle.text, {marginLeft: 15}]}
                         >
-                            {file.fileName}
+                            {file.filename}
                         </Text>
                     </View>
                     <View style={DownloadablesStyle.pressableContainer}>
