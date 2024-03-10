@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        viewCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
     });
 
     const Comment = sequelize.define('Comment', {

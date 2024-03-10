@@ -46,6 +46,7 @@ exports.getPosts = async (req, res) => {
                 'title',
                 'content',
                 'poster',
+                'viewCount',
                 'createdAt',
                 [
                     Sequelize.fn('COUNT', Sequelize.col('comments.id')),
@@ -96,6 +97,7 @@ exports.getPost = async (req, res) => {
         });
 
         if (post) {
+            await post.increment('viewCount', {by: 1});
             return res.status(200).send(post);
         } else {
             return res.status(404).end();
