@@ -19,11 +19,10 @@ const ForumStyle = StyleSheet.create({
         marginTop: 5,
         margin: 10,
         padding: 10,
-        color: 'black',
     },
     pressableRow: {
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 30,
@@ -58,20 +57,17 @@ const ForumStyle = StyleSheet.create({
         marginHorizontal: 10,
         borderRadius: 10,
     },
-    userName: {
-        ...material.title,
-        fontSize: 18,
+    username: {
         marginBottom: 5,
         color: 'black',
     },
     title: {
-        paddingLeft: 5,
+        ...material.title,
         fontWeight: '500',
         color: 'black',
     },
     body: {
         marginBottom: 10,
-        paddingLeft: 5,
         paddingVertical: 30,
         color: 'black',
     },
@@ -88,9 +84,6 @@ const ForumStyle = StyleSheet.create({
         color: 'black',
         marginHorizontal: 5,
         fontSize: 15,
-    },
-    commentContainer: {
-        padding: 10,
     },
     commentPoster: {
         ...material.title,
@@ -128,6 +121,10 @@ const ForumStyle = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0, 0.2)',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    modalCard: {
+        padding: 15,
+        width: 350,
     },
     commentInput: {
         marginTop: 30,

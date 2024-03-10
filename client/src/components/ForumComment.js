@@ -9,21 +9,9 @@ const ForumComment = ({comments}) => {
             {comments.map((comment, index) => (
                 <View key={index} style={{padding: 10}}>
                     <Text style={ForumStyle.commentPoster}>
-                        {comment.poster}
+                        {comment.poster} on {comment.createdAt}
                     </Text>
                     <Text style={ForumStyle.body}>{comment.content}</Text>
-                    <View style={ForumStyle.commentContainer}>
-                        <View style={ForumStyle.counterContainer}>
-                            <Pressable
-                                style={({pressed}) => [
-                                    pressed && {opacity: 0.5},
-                                ]}
-                            >
-                                <Feather name="heart" size={20} color="black" />
-                            </Pressable>
-                            <Text style={ForumStyle.counterText}>0</Text>
-                        </View>
-                    </View>
                 </View>
             ))}
         </View>

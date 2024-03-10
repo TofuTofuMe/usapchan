@@ -21,18 +21,16 @@ const ForumPost = ({posts}) => {
         setSelectedPost(post);
     };
 
-    const closeModal = () => {
-        setSelectedPost(null);
-    };
-
     return (
         <ScrollView>
             {posts.map((post, index) => (
                 <Pressable key={index} onPress={() => handlePostPress(post)}>
                     <View style={ForumStyle.postContainer}>
-                        <Text style={ForumStyle.userName}>{post.poster}</Text>
                         <Text style={ForumStyle.title}>{post.title}</Text>
-                        <Text style={ForumStyle.body}>{post.body}</Text>
+                        <Text style={ForumStyle.username}>
+                            posted by {post.poster} on {post.createdAt}
+                        </Text>
+                        <Text style={ForumStyle.body}>{post.content}</Text>
 
                         <View style={ForumStyle.postCounters}>
                             <View style={ForumStyle.counterContainer}>
@@ -42,12 +40,14 @@ const ForumPost = ({posts}) => {
                                     ]}
                                 >
                                     <Feather
-                                        name="heart"
+                                        name="bar-chart-2"
                                         size={22}
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text style={ForumStyle.counterText}>0</Text>
+                                <Text style={ForumStyle.counterText}>
+                                    {post.viewCount}
+                                </Text>
                             </View>
                             <View style={ForumStyle.counterContainer}>
                                 <Pressable
@@ -63,21 +63,9 @@ const ForumPost = ({posts}) => {
                                         color="black"
                                     />
                                 </Pressable>
-                                <Text style={ForumStyle.counterText}>0</Text>
-                            </View>
-                            <View style={ForumStyle.counterContainer}>
-                                <Pressable
-                                    style={({pressed}) => [
-                                        pressed && {opacity: 0.5},
-                                    ]}
-                                >
-                                    <Feather
-                                        name="share"
-                                        size={22}
-                                        color="black"
-                                    />
-                                </Pressable>
-                                <Text style={ForumStyle.counterText}>0</Text>
+                                <Text style={ForumStyle.counterText}>
+                                    {post.commentCount}
+                                </Text>
                             </View>
                         </View>
                     </View>
@@ -88,18 +76,18 @@ const ForumPost = ({posts}) => {
                 animationType="slide"
                 transparent={true}
                 visible={selectedPost !== null}
-                onRequestClose={closeModal}
+                onRequestClose={() => handlePostPress(null)}
             >
                 <TouchableOpacity
                     style={ForumStyle.modalBackground}
-                    onPress={closeModal}
+                    onPress={() => handlePostPress(null)}
                 >
                     <TouchableWithoutFeedback>
                         <View style={ForumStyle.modalContainer}>
                             {selectedPost && (
                                 <ForumPostModal
                                     post={selectedPost}
-                                    onClose={closeModal}
+                                    onClose={() => handlePostPress(null)}
                                 />
                             )}
                         </View>

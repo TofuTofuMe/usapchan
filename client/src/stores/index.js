@@ -12,7 +12,13 @@ import {
     showIntroAtom,
 } from './ChatStore';
 import {showBodyAtom, imageIndexAtom} from './HomeStore';
-import {selectedPostAtom} from './ForumStore';
+import {
+    selectedPostAtom,
+    postInputAtom,
+    commentInputAtom,
+    postsAtom,
+    commentsAtom,
+} from './ForumStore';
 
 export {
     loginStateAtom,
@@ -27,4 +33,8 @@ export {
     showBodyAtom,
     imageIndexAtom,
     selectedPostAtom,
+    postInputAtom,
+    commentInputAtom,
+    postsAtom,
+    commentsAtom,
 };
