@@ -9,11 +9,33 @@ import {
 } from 'react-native';
 import RegistrationStyle from '../styles/RegistrationStyle';
 import {useAtom} from 'jotai';
-import {userDataAtom} from '../stores';
+import {modalAtom, userDataAtom} from '../stores';
 import {registerUser} from '../utils';
+import {PopupModal} from '../components';
 
 const RegistrationScreen = ({navigation}) => {
     const [userData, setUserData] = useAtom(userDataAtom);
+    const [modal, setModal] = useAtom(modalAtom);
+
+    const goRegister = async () => {
+        setModal({
+            visibility: true,
+            loading: true,
+            message: 'Registering you up...',
+        });
+        const response = await registerUser(userData);
+
+        if (response.success) {
+            Alert.alert('Success', response.message);
+            navigation.navigate('Login');
+        } else {
+            Alert.alert('Error', response.message);
+        }
+        setModal({
+            visibility: false,
+            loading: false,
+        });
+    };
 
     return (
         <View style={RegistrationStyle.flexView}>
@@ -128,21 +150,7 @@ const RegistrationScreen = ({navigation}) => {
                                             : 'gray',
                                     },
                                 ]}
-                                onPress={async () => {
-                                    const response = await registerUser(
-                                        userData
-                                    );
-
-                                    if (response.success) {
-                                        Alert.alert(
-                                            'Success',
-                                            response.message
-                                        );
-                                        navigation.navigate('Login');
-                                    } else {
-                                        Alert.alert('Error', response.message);
-                                    }
-                                }}
+                                onPress={goRegister}
                             >
                                 {({pressed}) => (
                                     <Text
@@ -158,6 +166,7 @@ const RegistrationScreen = ({navigation}) => {
                     </View>
                 </View>
             </ImageBackground>
+            <PopupModal modal={modal} setModal={setModal} />
         </View>
     );
 };

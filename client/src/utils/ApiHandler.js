@@ -34,7 +34,7 @@ const loginUser = async (loginCredentials) => {
 
 const registerUser = async (userData) => {
     try {
-        var response = await fetchApi(
+        const response = await fetchApi(
             '/user/register',
             'POST',
             {'Content-Type': 'application/json'},

@@ -15,12 +15,41 @@ import {
     loginStateAtom,
     userDataAtom,
     userTokenAtom,
+    modalAtom,
 } from '../stores/SettingStore';
+import {PopupModal} from '../components';
 
 const LoginScreen = ({navigation}) => {
     const setLoginState = useSetAtom(loginStateAtom);
     const [userData, setUserData] = useAtom(userDataAtom);
+    const [modal, setModal] = useAtom(modalAtom);
     const setUserToken = useSetAtom(userTokenAtom);
+
+    const goLogin = async () => {
+        setModal({
+            visibility: true,
+            loading: true,
+            message: 'Logging you in',
+        });
+        const response = await loginUser(userData);
+        if (response.success) {
+            setUserToken(response.token);
+            setUserData({
+                studentId: response.user.studentId,
+                email: response.user.email,
+                username: response.user.username,
+                firstName: response.user.firstName,
+                lastName: response.user.lastName,
+            });
+            setLoginState(true);
+        } else {
+            Alert.alert('Error logging in', response.message);
+        }
+        setModal({
+            visibility: false,
+            loading: false,
+        });
+    };
 
     return (
         <View style={LoginStyle.flexView}>
@@ -40,6 +69,7 @@ const LoginScreen = ({navigation}) => {
                             style={LoginStyle.input}
                             placeholder="Username"
                             placeholderTextColor={'gray'}
+                            returnKeyType="next"
                             onChangeText={(usernameInput) =>
                                 setUserData({
                                     ...userData,
@@ -52,6 +82,8 @@ const LoginScreen = ({navigation}) => {
                             placeholder="Password"
                             placeholderTextColor={'gray'}
                             secureTextEntry
+                            returnKeyType="send"
+                            onSubmitEditing={goLogin}
                             onChangeText={(passwordInput) =>
                                 setUserData({
                                     ...userData,
@@ -68,18 +100,7 @@ const LoginScreen = ({navigation}) => {
                                     backgroundColor: pressed ? 'white' : 'gray',
                                 },
                             ]}
-                            onPress={async () => {
-                                const response = await loginUser(userData);
-                                if (response.success) {
-                                    setUserToken(response);
-                                    setLoginState(true);
-                                } else {
-                                    Alert.alert(
-                                        'Error logging in',
-                                        response.message
-                                    );
-                                }
-                            }}
+                            onPress={goLogin}
                         >
                             {({pressed}) => (
                                 <Text
@@ -115,6 +136,7 @@ const LoginScreen = ({navigation}) => {
                         </Pressable>
                     </View>
                 </View>
+                <PopupModal modal={modal} setModal={setModal} />
             </ImageBackground>
         </View>
     );
