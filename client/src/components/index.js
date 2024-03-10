@@ -1,5 +1,6 @@
-import PopupModal from './PopupModal';
 import {ChatBubble, addMessage} from './ChatBubble';
+import PopupModal from './PopupModal';
+import ChatSuggestions from './ChatSuggestions';
 import HomeHighlight from './HomeHighlight';
 import Carousel from './Carousel';
 import HomeBanner from './HomeBanner';
@@ -8,9 +9,10 @@ import DownloadablesList from './DownloadablesList';
 import DrawerNavigator from './DrawerNavigator';
 
 export {
+    addMessage,
     PopupModal,
     ChatBubble,
-    addMessage,
+    ChatSuggestions,
     HomeHighlight,
     Carousel,
     HomeBanner,

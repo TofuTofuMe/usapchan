@@ -19,4 +19,12 @@ const messagesAtom = atomWithStorage(
 );
 const showIntroAtom = atom(true);
 
-export {textInputAtom, textOutputAtom, messagesAtom, showIntroAtom};
+const showQueriesAtom = atom(false);
+
+export {
+    textInputAtom,
+    textOutputAtom,
+    messagesAtom,
+    showIntroAtom,
+    showQueriesAtom,
+};

@@ -9,20 +9,33 @@ import {
     Keyboard,
 } from 'react-native';
 import {useAtom} from 'jotai';
-import {messagesAtom, textInputAtom, showIntroAtom} from '../stores';
+import {
+    messagesAtom,
+    textInputAtom,
+    showIntroAtom,
+    showQueriesAtom,
+} from '../stores';
 import Feather from 'react-native-vector-icons/Feather';
 import ChatStyle from '../styles/ChatStyle';
-import {ChatBubble, addMessage} from '../components';
+import {ChatBubble, ChatSuggestions, addMessage} from '../components';
 import {sendChat} from '../utils';
-import {userTokenAtom} from '../stores';
+import {userTokenAtom, userDataAtom} from '../stores';
 import {useAtomValue} from 'jotai';
 
 const ChatScreen = () => {
     const [textInput, setTextInput] = useAtom(textInputAtom);
     const [messages, setMessages] = useAtom(messagesAtom);
     const [showIntro, setShowIntro] = useAtom(showIntroAtom);
+    const [showQueries, setShowQueries] = useAtom(showQueriesAtom);
     const userToken = useAtomValue(userTokenAtom);
+    const userData = useAtomValue(userDataAtom);
     const scrollRef = useRef();
+
+    const suggestions = [
+        {query: 'Query 1'},
+        {query: 'Query 2'},
+        {query: 'Query 3'},
+    ];
 
     const goChat = async () => {
         addMessage(setMessages, {
@@ -39,14 +52,18 @@ const ChatScreen = () => {
         Keyboard.dismiss();
     };
 
+    const showSuggestions = async () => {
+        setShowQueries(true);
+    };
+
     return (
         <View style={ChatStyle.flexView}>
             {showIntro && (
                 <View style={ChatStyle.introBodyContainer}>
                     <View style={ChatStyle.introBody}>
                         <Text style={ChatStyle.introText}>
-                            Hi Student, Usapchan is here! Your college life
-                            companion.
+                            Hi {userData.firstName}! Your college life companion
+                            is here!
                         </Text>
 
                         <View style={ChatStyle.mascotContainer}>
@@ -76,13 +93,20 @@ const ChatScreen = () => {
             </ScrollView>
             <View style={ChatStyle.bottomView}>
                 <View style={ChatStyle.inputContainer}>
+                    <ChatSuggestions
+                        showQueries={showQueries}
+                        setShowQueries={setShowQueries}
+                        setTextInput={setTextInput}
+                        suggestions={suggestions}
+                    />
                     <TextInput
                         style={ChatStyle.textInput}
-                        enterKeyHint="enter"
+                        enterKeyHint="send"
                         multiline
                         value={textInput}
-                        placeholder="Ask a question"
+                        placeholder="Ask a question, or press the menu on the right"
                         placeholderTextColor={'gray'}
+                        onSubmitEditing={goChat}
                         onChangeText={(newTextInput) =>
                             setTextInput(newTextInput)
                         }
@@ -95,9 +119,13 @@ const ChatScreen = () => {
                             pressed && ChatStyle.pressablePressed,
                             {marginBottom: 15, marginRight: 15},
                         ]}
-                        onPress={goChat}
+                        onPress={textInput ? goChat : showSuggestions}
                     >
-                        <Feather name="send" size={25} color="black" />
+                        {textInput ? (
+                            <Feather name="send" size={25} color="black" />
+                        ) : (
+                            <Feather name="menu" size={25} color="black" />
+                        )}
                     </Pressable>
                 </View>
             </View>
