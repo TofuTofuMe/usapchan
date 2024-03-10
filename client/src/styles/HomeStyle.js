@@ -77,36 +77,51 @@ const HomeStyle = StyleSheet.create({
     },
     calendarView: {
         flex: 1,
-        backgroundColor: '#99BC85',
-        marginTop: 20,
+        marginTop: 15,
+        margin: 10,
+        backgroundColor: 'rgba(82,109,81,.25)',
+        padding: 10,
+        borderRadius: 10,
     },
     calendarTitleView: {
         flex: 1,
+        width: '55%',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: 'rgba(82,109,81,.75)',
+        paddingVertical: 5,
     },
     calendarTitle: {
-        ...material.body1,
+        ...material.body3,
         fontSize: 22,
-        padding: 30,
+        color: 'black',
+    },
+    calenderRow: {
+        flexDirection: 'row',
     },
     calendarContent: {
         flex: 1,
-        height: 110,
-        margin: 20,
+        height: 'auto',
+        margin: 5,
+        marginTop: 15,
     },
     calendarBox: {
         flex: 1,
         borderWidth: 2,
-        borderColor: 'black',
+        borderColor: '#526d51',
     },
     calendar: {
         flex: 1,
         alignItems: 'center',
     },
-    calendarEvent: {
-        flex: 1,
-        alignItems: 'center',
+    calendarText: {
+        color: 'black',
+    },
+    calendarDayText: {
+        fontSize: 20,
+        color: 'black',
     },
     carouselContainer: {
         flex: 1,
