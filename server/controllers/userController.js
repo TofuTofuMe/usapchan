@@ -114,6 +114,8 @@ const verifyToken = async (req, res, next, userType = null) => {
                 next();
             } else if (userType === 'User' && user.type === 'Admin') {
                 next();
+            } else if (userType === 'User' && user.type === 'User') {
+                next();
             } else {
                 res.status(401).render('../views/loginView.ejs', {
                     collegeName: config.collegeName,
