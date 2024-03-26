@@ -17,9 +17,17 @@ chatRouter.get('/', verifyUser, (req, res) => {
 
 chatRouter.post('/send_chat', verifyUser, chatController.sendChat);
 
+chatRouter.get(
+    '/get_chatsuggestions',
+    verifyUser,
+    chatController.getChatSuggestions
+);
+
 chatRouter.get('/manage', verifyAdmin, (req, res) => {
     res.render('chatView.ejs', {collegeName: config.collegeName});
 });
+
+chatRouter.get('/train_nlp', verifyAdmin, chatController.trainNlp);
 
 chatRouter.get('/get_corpus', verifyAdmin, chatController.getCorpus);
 
@@ -29,12 +37,22 @@ chatRouter.get(
     chatController.getUnhandledCorpus
 );
 
+chatRouter.get('/get_suggestions', verifyAdmin, chatController.getSuggestions);
+
 chatRouter.post('/add_corpus', verifyAdmin, chatController.addCorpus);
+
+chatRouter.post('/add_suggestion', verifyAdmin, chatController.addSuggestion);
 
 chatRouter.post('/update_corpus', verifyAdmin, chatController.updateCorpus);
 
-chatRouter.get('/train_nlp', verifyAdmin, chatController.trainNlp);
+chatRouter.post(
+    '/update_suggestion',
+    verifyAdmin,
+    chatController.updateSuggestion
+);
 
 chatRouter.post('/drop_corpus', verifyAdmin, chatController.dropCorpus);
+
+chatRouter.post('/drop_suggestion', verifyAdmin, chatController.dropSuggestion);
 
 module.exports = chatRouter;

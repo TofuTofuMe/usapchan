@@ -41,5 +41,22 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return {Corpus, UnhandledCorpus};
+    const Suggestion = sequelize.define('Suggestion', {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            unique: true,
+            autoincrement: true,
+        },
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        query: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    });
+
+    return {Corpus, UnhandledCorpus, Suggestion};
 };

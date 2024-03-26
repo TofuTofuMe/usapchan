@@ -20,7 +20,6 @@ fetchTableData('Corpus').then(() => {
     });
 
     setupTable('Corpus', '#corpus-table-body').then(() => {
-        setupTable('UnhandledCorpus', '#unhandled-corpus-table-body');
         setupSelectorOptions('corpusSelect', 'Corpus', 'corpusId');
         handleSelectorChange(
             'corpusSelect',
@@ -46,5 +45,27 @@ fetchTableData('Corpus').then(() => {
         answerField.addEventListener('change', () => {
             answerEditor.value(answerField.value);
         });
+    });
+
+    setupTable('UnhandledCorpus', '#unhandled-corpus-table-body');
+
+    setupTable('Suggestions', '#suggestions-table-body').then(() => {
+        setupSelectorOptions('suggestionSelect', 'Suggestions', 'suggestionId');
+        handleSelectorChange(
+            'suggestionSelect',
+            ['suggestionId', 'category', 'suggestionQuery'],
+            'suggestionId',
+            'submitSuggestion',
+            'dropSuggestion'
+        );
+        setFormAction(
+            'suggestionSelect',
+            'resetSuggestion',
+            'submitSuggestion',
+            'dropSuggestion',
+            'suggestionForm',
+            'add_suggestion',
+            'update_suggestion'
+        );
     });
 });

@@ -14,7 +14,7 @@ const sequelize = new Sequelize({
 const {User} = userModel(sequelize, DataTypes);
 const {Course, Faculty, Schedule} = collegeModel(sequelize, DataTypes);
 const {Post, Comment} = forumModel(sequelize, DataTypes);
-const {Corpus, UnhandledCorpus} = chatModel(sequelize, DataTypes);
+const {Corpus, UnhandledCorpus, Suggestion} = chatModel(sequelize, DataTypes);
 
 const associateModels = () => {
     try {
@@ -93,4 +93,5 @@ module.exports = {
     Comment,
     Corpus,
     UnhandledCorpus,
+    Suggestion,
 };

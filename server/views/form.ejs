@@ -335,6 +335,66 @@
         </form>
     </div>
     <div class="break-inside-avoid-column">
+        <form action="/chat/add_suggestion" method="post" id="suggestionForm">
+            <p class="font-bold">Manage Chat Suggestions</p>
+            <div>
+                <label class="text-black">Suggestion ID</label>
+                <select
+                    name="suggestion_selected"
+                    id="suggestionSelect"
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                >
+                    <option value="new">Add New</option>
+                </select>
+            </div>
+            <div hidden>
+                <input type="text" name="suggestionId" id="suggestionId" />
+            </div>
+            <div>
+                <label class="text-black">Category</label> <br />
+                <textarea
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="category"
+                    id="category"
+                    required
+                ></textarea>
+            </div>
+            <div>
+                <label class="text-black">Query</label> <br />
+                <textarea
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    name="suggestionQuery"
+                    id="suggestionQuery"
+                    required
+                ></textarea>
+            </div>
+            <div>
+                <input
+                    type="reset"
+                    class="hover:underline p-2"
+                    value="Clear"
+                    id="resetSuggestion"
+                />
+                <button
+                    type="submit"
+                    id="submitSuggestion"
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black p-1 mr-2"
+                >
+                    Submit
+                </button>
+                <button
+                    type="submit"
+                    id="dropSuggestion"
+                    formaction="drop_suggestion"
+                    disabled
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="break-inside-avoid-column">
         <form id="testChatForm">
             <p class="font-bold">Try Queries and Answers</p>
             <label class="text-black">Query</label> <br />

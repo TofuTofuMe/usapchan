@@ -21,6 +21,8 @@
             <div class="flex-row mx-2 w-auto">
                 <p class="text-black font-medium">Form</p>
                 <%- include('form.ejs', {form: 'chat'}) %>
+                <p class="text-black font-medium">Chat Suggestions</p>
+                <%- include('table.ejs', {table: 'suggestions'}) %>
                 <p class="text-black font-medium">Query and Answers</p>
                 <%- include('table.ejs', {table: 'corpus'}) %>
                 <p class="text-black font-medium">Unhandled Queries</p>

@@ -24,6 +24,8 @@ async function fetchTableData(tableId) {
                     method: 'GET',
                 });
                 break;
+            case 'Suggestions':
+                request = new Request('/chat/get_suggestions', {
                     method: 'GET',
                 });
                 break;
