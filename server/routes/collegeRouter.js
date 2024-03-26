@@ -19,16 +19,16 @@ collegeRouter.get('/manage', verifyAdmin, (req, res) => {
     res.render('collegeView.ejs', {collegeName: config.collegeName});
 });
 
-collegeRouter.get('/list_courses', verifyAdmin, collegeController.getCourses);
+collegeRouter.get('/get_courses', verifyAdmin, collegeController.getCourses);
 
 collegeRouter.get(
-    '/list_faculties',
+    '/get_faculties',
     verifyAdmin,
     collegeController.getFaculties
 );
 
 collegeRouter.get(
-    '/list_schedules',
+    '/get_schedules',
     verifyAdmin,
     collegeController.getSchedules
 );

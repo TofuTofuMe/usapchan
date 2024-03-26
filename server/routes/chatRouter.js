@@ -21,10 +21,10 @@ chatRouter.get('/manage', verifyAdmin, (req, res) => {
     res.render('chatView.ejs', {collegeName: config.collegeName});
 });
 
-chatRouter.get('/list_corpus', verifyAdmin, chatController.getCorpus);
+chatRouter.get('/get_corpus', verifyAdmin, chatController.getCorpus);
 
 chatRouter.get(
-    '/list_unhandled',
+    '/get_unhandledcorpus',
     verifyAdmin,
     chatController.getUnhandledCorpus
 );

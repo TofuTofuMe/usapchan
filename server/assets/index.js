@@ -2,25 +2,28 @@ async function fetchTableData(tableId) {
     return new Promise((resolve, reject) => {
         switch (tableId) {
             case 'Courses':
-                request = new Request('/college/list_courses', {method: 'GET'});
+                request = new Request('/college/get_courses', {method: 'GET'});
                 break;
             case 'Faculties':
-                request = new Request('/college/list_faculties', {
+                request = new Request('/college/get_faculties', {
                     method: 'GET',
                 });
                 break;
             case 'Schedules':
-                request = new Request('/college/list_schedules', {
+                request = new Request('/college/get_schedules', {
                     method: 'GET',
                 });
                 break;
             case 'Corpus':
-                request = new Request('/chat/list_corpus', {
+                request = new Request('/chat/get_corpus', {
                     method: 'GET',
                 });
                 break;
             case 'UnhandledCorpus':
-                request = new Request('/chat/list_unhandled', {
+                request = new Request('/chat/get_unhandledcorpus', {
+                    method: 'GET',
+                });
+                break;
                     method: 'GET',
                 });
                 break;
