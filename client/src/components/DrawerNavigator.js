@@ -4,12 +4,12 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {Avatar, Title, Drawer, Section} from 'react-native-paper';
 import DrawerStyle from '../styles/DrawerStyle';
 import {loginStateAtom, userDataAtom, userTokenAtom} from '../stores';
-import {useSetAtom} from 'jotai';
+import {useAtom, useSetAtom} from 'jotai';
 
 const DrawerNavigator = (props) => {
     const setUserToken = useSetAtom(userTokenAtom);
     const setLoginState = useSetAtom(loginStateAtom);
-    const setUserData = useSetAtom(userDataAtom);
+    const [userData, setUserData] = useAtom(userDataAtom);
 
     const goLogout = () => {
         setUserToken('');
@@ -28,7 +28,9 @@ const DrawerNavigator = (props) => {
                             />
                         </View>
                         <View style={DrawerStyle.userInfo}>
-                            <Title style={DrawerStyle.title}>Username</Title>
+                            <Title style={DrawerStyle.title}>
+                                {userData.username}
+                            </Title>
                         </View>
                     </View>
                     <Drawer.Section style={DrawerStyle.drawerSection}>

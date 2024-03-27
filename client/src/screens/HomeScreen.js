@@ -2,6 +2,8 @@ import React from 'react';
 import {Text, View, ScrollView} from 'react-native';
 import HomeStyle from '../styles/HomeStyle';
 import {HomeHighlight, Carousel, HomeBanner} from '../components';
+import {userDataAtom} from '../stores';
+import {useAtomValue} from 'jotai';
 
 const images = [
     require('../assets/carousel1.jpg'),
@@ -12,11 +14,13 @@ const images = [
 ];
 
 const HomeScreen = () => {
+    const userData = useAtomValue(userDataAtom);
+
     return (
         <ScrollView style={HomeStyle.flexView}>
             <HomeBanner
                 banner={{
-                    textOne: 'Hello college student',
+                    textOne: `Hello ${userData.firstName}`,
                     textTwo: 'Your college companion is here!',
                 }}
             />
