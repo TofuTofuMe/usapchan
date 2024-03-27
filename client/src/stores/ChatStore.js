@@ -17,14 +17,19 @@ const messagesAtom = atomWithStorage(
     ],
     storage
 );
-const showIntroAtom = atom(true);
+const suggestionsAtom = atom({
+    visible: false,
+    state: 0,
+    data: [],
+    options: {},
+});
 
-const showQueriesAtom = atom(false);
+const showIntroAtom = atom(true);
 
 export {
     textInputAtom,
     textOutputAtom,
     messagesAtom,
+    suggestionsAtom,
     showIntroAtom,
-    showQueriesAtom,
 };

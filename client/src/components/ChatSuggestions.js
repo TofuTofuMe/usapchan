@@ -1,42 +1,64 @@
 import React from 'react';
-import {Modal, Pressable, Text, View} from 'react-native';
-import Style from '../Style';
+import {Modal, Pressable, ScrollView, Text, View} from 'react-native';
+import ChatStyle from '../styles/ChatStyle';
 
-const ChatSuggestions = ({
-    showQueries,
-    setShowQueries,
-    setTextInput,
-    suggestions,
-}) => {
+const ChatSuggestions = ({suggestions, setSuggestions, setTextInput}) => {
     return (
         <Modal
-            visible={showQueries}
+            visible={suggestions.visible}
             animationType="fade"
             transparent={true}
-            onRequestClose={() => setShowQueries(false)}
+            onRequestClose={() =>
+                setSuggestions({visible: false, state: 0, data: []})
+            }
         >
-            <View style={Style.modalView}>
-                <View style={Style.modalCard}>
-                    <Text style={Style.title}>Chat Suggestions</Text>
-                    <View>
-                        {suggestions.map((suggestion, index) => (
-                            <Pressable
-                                style={({pressed}) => [
-                                    Style.pressable,
-                                    pressed && Style.pressablePressed,
-                                ]}
-                                onPress={() => {
-                                    setTextInput(suggestion.query);
-                                    setShowQueries(false);
-                                }}
-                                key={index}
-                            >
-                                <Text style={Style.button}>
-                                    {suggestion.query}
-                                </Text>
-                            </Pressable>
-                        ))}
-                    </View>
+            <View style={ChatStyle.modalView}>
+                <View style={ChatStyle.modalCard}>
+                    <Text style={ChatStyle.title}>Chat Suggestions</Text>
+                    <ScrollView style={ChatStyle.zeroFlexGrow}>
+                        {suggestions.state === 0
+                            ? suggestions.data.map((suggestion, index) => (
+                                  <Pressable
+                                      style={({pressed}) => [
+                                          ChatStyle.pressable,
+                                          pressed && ChatStyle.pressablePressed,
+                                      ]}
+                                      onPress={() => {
+                                          setSuggestions({
+                                              visible: true,
+                                              state: 1,
+                                              options: suggestion.options,
+                                          });
+                                      }}
+                                      key={index}
+                                  >
+                                      <Text style={ChatStyle.button}>
+                                          {suggestion.category}
+                                      </Text>
+                                  </Pressable>
+                              ))
+                            : suggestions.options.map((option, index) => (
+                                  <Pressable
+                                      style={({pressed}) => [
+                                          ChatStyle.pressable,
+                                          pressed && ChatStyle.pressablePressed,
+                                      ]}
+                                      onPress={() => {
+                                          setSuggestions({
+                                              visible: false,
+                                              state: 0,
+                                              data: [],
+                                          });
+                                          setTextInput(option);
+                                      }}
+                                      key={index}
+                                  >
+                                      <Text style={ChatStyle.button}>
+                                          {option}
+                                      </Text>
+                                  </Pressable>
+                              ))}
+                    </ScrollView>
                 </View>
             </View>
         </Modal>

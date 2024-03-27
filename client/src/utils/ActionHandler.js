@@ -11,7 +11,18 @@ const sendChat = async (chatQuery, userToken) => {
             },
             JSON.stringify({message: chatQuery})
         );
+        return response;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
 
+const getChatSuggestions = async (userToken) => {
+    try {
+        const response = await fetchApi('/chat/get_chatsuggestions', 'GET', {
+            Authorization: `Bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        });
         return response;
     } catch (error) {
         console.error(error.message);
@@ -29,7 +40,6 @@ const addPost = async (postObject, userToken) => {
             },
             JSON.stringify(postObject)
         );
-
         return response;
     } catch (error) {
         console.error(error.message);
@@ -47,7 +57,6 @@ const addComment = async (postId, commentObject, userToken) => {
             },
             JSON.stringify(commentObject)
         );
-
         return response;
     } catch (error) {
         console.error(error.message);
@@ -78,4 +87,11 @@ const getPostDetails = async (postId, userToken) => {
     }
 };
 
-export {sendChat, addPost, addComment, getPosts, getPostDetails};
+export {
+    sendChat,
+    getChatSuggestions,
+    addPost,
+    addComment,
+    getPosts,
+    getPostDetails,
+};

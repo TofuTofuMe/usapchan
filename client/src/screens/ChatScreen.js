@@ -10,50 +10,58 @@ import {
 } from 'react-native';
 import {useAtom} from 'jotai';
 import {
+    userTokenAtom,
+    userDataAtom,
     messagesAtom,
     textInputAtom,
     showIntroAtom,
-    showQueriesAtom,
+    suggestionsAtom,
 } from '../stores';
 import Feather from 'react-native-vector-icons/Feather';
 import ChatStyle from '../styles/ChatStyle';
 import {ChatBubble, ChatSuggestions, addMessage} from '../components';
-import {sendChat} from '../utils';
-import {userTokenAtom, userDataAtom} from '../stores';
+import {getChatSuggestions, sendChat} from '../utils';
 import {useAtomValue} from 'jotai';
 
 const ChatScreen = () => {
     const [textInput, setTextInput] = useAtom(textInputAtom);
     const [messages, setMessages] = useAtom(messagesAtom);
     const [showIntro, setShowIntro] = useAtom(showIntroAtom);
-    const [showQueries, setShowQueries] = useAtom(showQueriesAtom);
+    const [suggestions, setSuggestions] = useAtom(suggestionsAtom);
     const userToken = useAtomValue(userTokenAtom);
     const userData = useAtomValue(userDataAtom);
     const scrollRef = useRef();
 
-    const suggestions = [
-        {query: 'Query 1'},
-        {query: 'Query 2'},
-        {query: 'Query 3'},
-    ];
-
     const goChat = async () => {
-        addMessage(setMessages, {
-            text: textInput,
-            user: true,
-        });
-        setTextInput('');
-        setShowIntro(false);
-        const response = await sendChat(textInput, userToken);
-        addMessage(setMessages, {
-            text: response.answer ? response.answer : 'No response',
-            user: false,
-        });
-        Keyboard.dismiss();
+        try {
+            addMessage(setMessages, {
+                text: textInput,
+                user: true,
+            });
+            Keyboard.dismiss();
+            setTextInput('');
+            setShowIntro(false);
+            const response = await sendChat(textInput, userToken);
+            addMessage(setMessages, {
+                text: response.answer ? response.answer : 'No response',
+                user: false,
+            });
+        } catch {
+            addMessage(setMessages, {
+                text: "It seems I can't connect to my server. Are you connected to the internet?",
+                user: false,
+            });
+        }
     };
 
     const showSuggestions = async () => {
-        setShowQueries(true);
+        getChatSuggestions(userToken).then((suggestionsData) => {
+            setSuggestions({
+                visible: true,
+                state: 0,
+                data: suggestionsData,
+            });
+        });
     };
 
     return (
@@ -94,10 +102,9 @@ const ChatScreen = () => {
             <View style={ChatStyle.bottomView}>
                 <View style={ChatStyle.inputContainer}>
                     <ChatSuggestions
-                        showQueries={showQueries}
-                        setShowQueries={setShowQueries}
-                        setTextInput={setTextInput}
                         suggestions={suggestions}
+                        setSuggestions={setSuggestions}
+                        setTextInput={setTextInput}
                     />
                     <TextInput
                         style={ChatStyle.textInput}

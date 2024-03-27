@@ -42,7 +42,6 @@ const ChatStyle = StyleSheet.create({
         textgroup: {
             padding: 5,
             color: materialColors.blackPrimary,
-            textAlign: 'center',
         },
         table: {
             flex: 1,
@@ -71,6 +70,43 @@ const ChatStyle = StyleSheet.create({
     text: {
         ...material.body1,
         padding: 10,
+    },
+
+    modalView: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalCard: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 25,
+        padding: 35,
+        paddingLeft: 50,
+        paddingRight: 50,
+        margin: 35,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0.2,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    zeroFlexGrow: {
+        flexGrow: 0,
+    },
+    title: {
+        ...material.title,
+        color: materialColors.blackPrimary,
+    },
+    button: {
+        ...material.button,
+        alignSelf: 'center',
+        textAlign: 'center',
     },
 
     introBodyContainer: {

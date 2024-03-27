@@ -1,6 +1,7 @@
 import {fetchApi, loginUser, registerUser} from './ApiHandler';
 import {
     sendChat,
+    getChatSuggestions,
     getPosts,
     getPostDetails,
     addPost,
@@ -12,6 +13,7 @@ export {
     loginUser,
     registerUser,
     sendChat,
+    getChatSuggestions,
     getPosts,
     getPostDetails,
     addPost,

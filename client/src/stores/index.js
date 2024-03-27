@@ -9,8 +9,8 @@ import {
     textInputAtom,
     textOutputAtom,
     messagesAtom,
+    suggestionsAtom,
     showIntroAtom,
-    showQueriesAtom,
 } from './ChatStore';
 import {showBodyAtom, imageIndexAtom} from './HomeStore';
 import {
@@ -36,8 +36,8 @@ export {
     textInputAtom,
     textOutputAtom,
     messagesAtom,
+    suggestionsAtom,
     showIntroAtom,
-    showQueriesAtom,
     showBodyAtom,
     imageIndexAtom,
     selectedPostAtom,
