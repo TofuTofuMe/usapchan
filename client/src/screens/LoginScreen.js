@@ -26,29 +26,37 @@ const LoginScreen = ({navigation}) => {
     const setUserToken = useSetAtom(userTokenAtom);
 
     const goLogin = async () => {
-        setModal({
-            visibility: true,
-            loading: true,
-            message: 'Logging you in',
-        });
-        const response = await loginUser(userData);
-        if (response.success) {
-            setUserToken(response.token);
-            setUserData({
-                studentId: response.user.studentId,
-                email: response.user.email,
-                username: response.user.username,
-                firstName: response.user.firstName,
-                lastName: response.user.lastName,
+        try {
+            setModal({
+                visibility: true,
+                loading: true,
+                message: 'Logging you in',
             });
-            setLoginState(true);
-        } else {
-            Alert.alert('Error logging in', response.message);
+            const response = await loginUser(userData);
+            if (response.success) {
+                setUserToken(response.token);
+                setUserData({
+                    studentId: response.user.studentId,
+                    email: response.user.email,
+                    username: response.user.username,
+                    firstName: response.user.firstName,
+                    lastName: response.user.lastName,
+                });
+                setLoginState(true);
+            } else {
+                Alert.alert('Login Failed', response.message);
+            }
+            setModal({
+                visibility: false,
+                loading: false,
+            });
+        } catch {
+            setModal({visibility: false, loading: false});
+            Alert.alert(
+                'Login Failed',
+                'Are you connected to the internet?\nCheck your settings and try again.'
+            );
         }
-        setModal({
-            visibility: false,
-            loading: false,
-        });
     };
 
     return (

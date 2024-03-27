@@ -18,23 +18,34 @@ const RegistrationScreen = ({navigation}) => {
     const [modal, setModal] = useAtom(modalAtom);
 
     const goRegister = async () => {
-        setModal({
-            visibility: true,
-            loading: true,
-            message: 'Registering you up...',
-        });
-        const response = await registerUser(userData);
+        try {
+            setModal({
+                visibility: true,
+                loading: true,
+                message: 'Registering you up...',
+            });
+            const response = await registerUser(userData);
 
-        if (response.success) {
-            Alert.alert('Success', response.message);
-            navigation.navigate('Login');
-        } else {
-            Alert.alert('Error', response.message);
+            if (response.success) {
+                Alert.alert('Success', response.message);
+                navigation.navigate('Login');
+            } else {
+                Alert.alert(
+                    'Registration Failed',
+                    `${response.message}\n${response.error}`
+                );
+            }
+            setModal({
+                visibility: false,
+                loading: false,
+            });
+        } catch {
+            setModal({visibility: false, loading: false});
+            Alert.alert(
+                'Registration Failed',
+                'Are you connected to the internet?\nCheck your settings and try again.'
+            );
         }
-        setModal({
-            visibility: false,
-            loading: false,
-        });
     };
 
     return (
