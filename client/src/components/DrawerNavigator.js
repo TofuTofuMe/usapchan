@@ -3,12 +3,20 @@ import {View, Text} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {Avatar, Title, Drawer, Section} from 'react-native-paper';
 import DrawerStyle from '../styles/DrawerStyle';
-import {loginStateAtom, userDataAtom} from '../stores';
+import {loginStateAtom, userDataAtom, userTokenAtom} from '../stores';
 import {useSetAtom} from 'jotai';
 
 const DrawerNavigator = (props) => {
+    const setUserToken = useSetAtom(userTokenAtom);
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
+
+    const goLogout = () => {
+        setUserToken('');
+        setUserData({});
+        setLoginState(false);
+    };
+
     return (
         <View style={DrawerStyle.flexView}>
             <DrawerContentScrollView {...props}>
@@ -42,13 +50,7 @@ const DrawerNavigator = (props) => {
                                 props.navigation.navigate('Downloadables');
                             }}
                         />
-                        <DrawerItem
-                            label="Logout"
-                            onPress={() => {
-                                setUserData({});
-                                setLoginState(false);
-                            }}
-                        />
+                        <DrawerItem label="Logout" onPress={goLogout} />
                     </Drawer.Section>
                 </View>
             </DrawerContentScrollView>
