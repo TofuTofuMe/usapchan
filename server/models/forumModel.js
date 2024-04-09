@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
+        approved: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     });
 
     const Comment = sequelize.define('Comment', {

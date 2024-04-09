@@ -452,4 +452,81 @@
         </form>
     </div>
 </div>
+<% }; %> <% if (form == 'forum') { %>
+<div class="flex-col columns-4 border-2 border-black my-2 p-2">
+    <div class="break-inside-avoid-column">
+        <form method="post">
+            <div hidden>
+                <input type="text" name="postId" id="postId" />
+            </div>
+            <div>
+                <label class="text-black">Post ID</label>
+                <select
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black p-1"
+                    id="postSelect"
+                >
+                    <option value="new">Select Post</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Approval</label> <br />
+                <select
+                    class="w-auto rounded-md ring-black ring-1 m-2 bg-black text-white hover:bg-gray-300 hover:text-black disabled:bg-gray-600 p-1"
+                    id="approved"
+                    disabled
+                >
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-black">Poster</label> <br />
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    id="poster"
+                    readonly
+                />
+            </div>
+            <div>
+                <label class="text-black">Title</label> <br />
+                <input
+                    type="text"
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    id="title"
+                    readonly
+                />
+            </div>
+            <div>
+                <label class="text-black">Content</label>
+                <textarea
+                    class="w-auto rounded-md ring-black ring-1 m-2"
+                    id="content"
+                    readonly
+                ></textarea>
+            </div>
+
+            <div>
+                <button
+                    type="submit"
+                    id="approvePost"
+                    formaction=""
+                    class="ring-1 rounded-md ring-black bg-black text-white hover:bg-gray-300 hover:text-black disabled:bg-gray-600 p-1 mr-2"
+                    disabled
+                >
+                    Approve
+                </button>
+                <button
+                    type="submit"
+                    id="dropPost"
+                    formaction=""
+                    class="ring-1 rounded-md ring-black bg-red-900 text-white hover:bg-red-600 hover:text-black disabled:hidden p-1"
+                    disabled
+                >
+                    Drop
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 <% }; %>

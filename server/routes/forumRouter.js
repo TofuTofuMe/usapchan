@@ -15,7 +15,7 @@ forumRouter.get('/', verifyUser, (req, res) => {
     res.status(200).end();
 });
 
-forumRouter.get('/get_posts', verifyUser, forumController.getPosts);
+forumRouter.get('/get_posts', verifyUser, forumController.getApprovedPosts);
 
 forumRouter.get('/get_comments', verifyUser, forumController.getComments);
 
@@ -35,7 +35,25 @@ forumRouter.get('/manage', verifyAdmin, (req, res) => {
     });
 });
 
-forumRouter.post('/drop_post', verifyAdmin, forumController.dropPost);
+forumRouter.get('/get_allposts', verifyAdmin, forumController.getAllPosts);
+
+forumRouter.post(
+    '/post/:postId/approve_post',
+    verifyAdmin,
+    forumController.approvePost
+);
+
+forumRouter.post(
+    '/post/:postId/unapprove_post',
+    verifyAdmin,
+    forumController.unapprovePost
+);
+
+forumRouter.post(
+    '/post/:postId/drop_post',
+    verifyAdmin,
+    forumController.dropPost
+);
 
 forumRouter.post('/drop_comment', verifyAdmin, forumController.dropComment);
 

@@ -38,16 +38,17 @@ exports.addComment = async (req, res) => {
     }
 };
 
-exports.getPosts = async (req, res) => {
+exports.getAllPosts = async (req, res, approved = false) => {
     try {
         const posts = await Post.findAll({
             attributes: [
-                'id',
+                ['id', 'postId'],
                 'title',
                 'content',
                 'poster',
                 'viewCount',
                 'createdAt',
+                'approved',
                 [
                     Sequelize.fn('COUNT', Sequelize.col('comments.id')),
                     'commentCount',
@@ -61,6 +62,7 @@ exports.getPosts = async (req, res) => {
                 },
             ],
             group: ['Post.id'],
+            where: approved == true ? {approved: true} : {},
         });
         res.status(200).send(posts);
     } catch (error) {
@@ -70,6 +72,10 @@ exports.getPosts = async (req, res) => {
             error: error.message,
         });
     }
+};
+
+exports.getApprovedPosts = async (req, res) => {
+    this.getAllPosts(req, res, true);
 };
 
 exports.getComments = async (req, res) => {
@@ -105,25 +111,54 @@ exports.getPost = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Error getting post',
+            message: 'Error getting post.',
             error: error.message,
         });
         console.error;
     }
 };
 
-exports.dropPost = async (req, res) => {
+exports.approvePost = async (req, res) => {
     try {
-        const {id, title, poster} = req.body;
-
         const post = await Post.findOne({
             where: {
-                id: id,
-                title: title,
-                poster: poster,
+                id: req.params.postId,
             },
         });
+        await post.update({approved: true});
+        res.status(200).redirect('/forum/manage');
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Failed to approve post.',
+            error: error.message,
+        });
+    }
+};
 
+exports.unapprovePost = async (req, res) => {
+    try {
+        const post = await Post.findOne({
+            where: {
+                id: req.params.postId,
+            },
+        });
+        await post.update({approved: false});
+        res.status(200).redirect('/forum/manage');
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Failed to unapprove post.',
+            error: error.message,
+        });
+    }
+};
+
+exports.dropPost = async (req, res) => {
+    try {
+        const post = await Post.findOne({
+            where: {id: req.params.postId},
+        });
         if (!post) {
             return res.status(400).json({
                 success: false,
@@ -131,15 +166,12 @@ exports.dropPost = async (req, res) => {
             });
         }
         await post.destroy();
-        res.status(200).json({
-            success: true,
-            message: 'Successfully dropped post',
-        });
-    } catch {
+        res.status(200).redirect('/forum/manage');
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: 'Failed to destroy post.',
-            error: error,
+            error: error.message,
         });
     }
 };
@@ -155,7 +187,6 @@ exports.dropComment = async (req, res) => {
                 poster: poster,
             },
         });
-
         if (!comment) {
             return res.status(400).json({
                 success: false,
@@ -163,10 +194,7 @@ exports.dropComment = async (req, res) => {
             });
         }
         await comment.destroy();
-        res.status(200).json({
-            success: true,
-            message: 'Successfully dropped comment',
-        });
+        res.status(200).redirect('/forum/manage');
     } catch (error) {
         res.status(500).json({
             success: false,

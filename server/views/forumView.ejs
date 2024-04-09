@@ -4,13 +4,21 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link type="text/css" rel="stylesheet" href="/style.css" />
+        <script src="/index.js"></script>
+        <script src="/forumScript.js"></script>
     </head>
     <body>
         <%- include('navbar.ejs') %>
         <div
-            class="mx-auto flex rounded border-2 border-black w-auto ml-4 mr-4 my-4 p-4"
+            class="mx-auto flex-col rounded border-2 border-black w-auto ml-4 mr-4 my-4 p-4"
         >
             <p class="text-black font-medium">Forum Management</p>
+            <div class="flex-row mx-2 w-auto">
+                <p class="text-black font-medium">Form</p>
+                <%- include('form.ejs', {form: 'forum'}) %>
+                <p class="text-black font-medium">Posts</p>
+                <%- include('table.ejs', {table: 'forum-posts'}) %>
+            </div>
         </div>
     </body>
 </html>

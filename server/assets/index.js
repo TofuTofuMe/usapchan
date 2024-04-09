@@ -29,6 +29,11 @@ async function fetchTableData(tableId) {
                     method: 'GET',
                 });
                 break;
+            case 'ForumPosts':
+                request = new Request('/forum/get_allposts', {
+                    method: 'GET',
+                });
+                break;
             default:
                 reject(new Error('Invalid table ID given'));
                 break;
