@@ -3,7 +3,7 @@ const config = require('../config.json');
 const cookieParser = require('cookie-parser');
 
 const collegeController = require('../controllers/collegeController');
-const {verifyAdmin} = require('../controllers/userController');
+const {verifyAdmin, verifyUser} = require('../controllers/userController');
 
 var collegeRouter = express.Router();
 
@@ -11,9 +11,15 @@ collegeRouter.use(express.urlencoded({extended: true}));
 collegeRouter.use(express.json());
 collegeRouter.use(cookieParser());
 
-collegeRouter.get('/', verifyAdmin, (req, res) => {
+collegeRouter.get('/', verifyUser, (req, res) => {
     res.status(200).end();
 });
+
+collegeRouter.get(
+    '/get_downloadables',
+    verifyUser,
+    collegeController.getDownloadables
+);
 
 collegeRouter.get('/manage', verifyAdmin, (req, res) => {
     res.render('collegeView.ejs', {collegeName: config.collegeName});

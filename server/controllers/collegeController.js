@@ -1,4 +1,21 @@
 const {Course, Faculty, Schedule} = require('../utils/sqlHandler');
+const fs = require('fs/promises');
+
+exports.getDownloadables = async (req, res) => {
+    try {
+        const downloadables = await fs.readdir('assets/downloadables/', {
+            withFileTypes: true,
+            recursive: true,
+        });
+        res.status(200).send(downloadables);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Failed to get downloadables.',
+            error: error.message,
+        });
+    }
+};
 
 exports.addCourse = async (req, res) => {
     try {
