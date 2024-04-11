@@ -1,4 +1,5 @@
-import {fetchApi} from './ApiHandler';
+import {fetchApi, downloadFile} from './ApiHandler';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 const sendChat = async (chatQuery, userToken) => {
     try {
@@ -87,6 +88,44 @@ const getPostDetails = async (postId, userToken) => {
     }
 };
 
+const getDownloadables = async (userToken, type) => {
+    try {
+        const response = await fetchApi('/college/get_downloadables/', 'GET', {
+            Authorization: `Bearer ${userToken}`,
+        });
+        const downloadables = [];
+
+        for (const file of response) {
+            if (file.path.includes(type)) {
+                downloadables.push({
+                    filename: file.name,
+                    url: file.path.replace('assets/', '/') + `/${file.name}`,
+                });
+            }
+        }
+        return downloadables;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+const getDownloadable = async (userToken, file) => {
+    try {
+        const response = await downloadFile(userToken, file);
+        return response;
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+const openFile = async (filePath) => {
+    try {
+        ReactNativeBlobUtil.android.actionViewIntent(filePath);
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
 export {
     sendChat,
     getChatSuggestions,
@@ -94,4 +133,7 @@ export {
     addComment,
     getPosts,
     getPostDetails,
+    getDownloadables,
+    getDownloadable,
+    openFile,
 };

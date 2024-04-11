@@ -6,6 +6,9 @@ import {
     getPostDetails,
     addPost,
     addComment,
+    getDownloadables,
+    getDownloadable,
+    openFile,
 } from './ActionHandler';
 
 export {
@@ -18,4 +21,7 @@ export {
     getPostDetails,
     addPost,
     addComment,
+    getDownloadables,
+    getDownloadable,
+    openFile,
 };
