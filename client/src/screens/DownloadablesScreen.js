@@ -1,61 +1,58 @@
 import {React} from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {DownloadablesList, DownloadablesOption} from '../components';
 import DownloadablesStyle from '../styles/DownloadablesStyle';
-import {
-    studentFilesAtom,
-    facultyFilesAtom,
-    studentOptionAtom,
-    facultyOptionAtom,
-} from '../stores';
-import {useAtom} from 'jotai';
+import {userTokenAtom, downloadablesAtom} from '../stores';
+import {getDownloadables} from '../utils';
+import {useAtom, useAtomValue} from 'jotai';
 
 const DownloadablesScreen = () => {
-    const [showStudentFiles, setShowStudentFiles] = useAtom(studentFilesAtom);
-    const [showFacultyFiles, setShowFacultyFiles] = useAtom(facultyFilesAtom);
-    const [showStudentOption, setShowStudentOption] =
-        useAtom(studentOptionAtom);
-    const [showFacultyOption, setShowFacultyOption] =
-        useAtom(facultyOptionAtom);
+    const [downloadMenu, setDownloadMenu] = useAtom(downloadablesAtom);
+    const userToken = useAtomValue(userTokenAtom);
 
-    const handleStudentPress = () => {
-        setShowStudentFiles(!showStudentFiles);
-        setShowStudentOption(!showStudentOption);
+    const setMenu = async (menuType) => {
+        try {
+            menuType === 0
+                ? getDownloadables(userToken, 'student').then((files) => {
+                      setDownloadMenu({
+                          state: downloadMenu.state ? 0 : 1,
+                          files: files,
+                      });
+                  })
+                : getDownloadables(userToken, 'faculty').then((files) => {
+                      setDownloadMenu({
+                          state: downloadMenu.state ? 0 : 2,
+                          files: files,
+                      });
+                  });
+        } catch {
+            Alert.alert(
+                'Error',
+                `There's an issue loading the downloadables, are you connected to the internet?`
+            );
+        }
     };
-
-    const handleFacultyPress = () => {
-        setShowFacultyFiles(!showFacultyFiles);
-        setShowFacultyOption(!showFacultyOption);
-    };
-
-    const studentFiles = [
-        {filename: 'Student File 1'},
-        {filename: 'Student File 2'},
-        {filename: 'Student File 3'},
-    ];
-
-    const facultyFiles = [
-        {filename: 'Faculty File 1'},
-        {filename: 'Faculty File 2'},
-        {filename: 'Faculty File 3'},
-    ];
 
     return (
         <View style={DownloadablesStyle.flexView}>
-            {showFacultyOption && (
+            {(downloadMenu.state === 0 || downloadMenu.state === 1) && (
                 <DownloadablesOption
                     title="For Students"
-                    onPress={handleStudentPress}
+                    onPress={() => setMenu(0)}
                 />
             )}
-            {showStudentFiles && <DownloadablesList files={studentFiles} />}
-            {showStudentOption && (
+            {(downloadMenu.state === 0 || downloadMenu.state === 2) && (
                 <DownloadablesOption
-                    title="For Faculties"
-                    onPress={handleFacultyPress}
+                    title="For Faculty"
+                    onPress={() => setMenu(1)}
                 />
             )}
-            {showFacultyFiles && <DownloadablesList files={facultyFiles} />}
+            {downloadMenu.state === 1 && (
+                <DownloadablesList files={downloadMenu.files} />
+            )}
+            {downloadMenu.state === 2 && (
+                <DownloadablesList files={downloadMenu.files} />
+            )}
         </View>
     );
 };

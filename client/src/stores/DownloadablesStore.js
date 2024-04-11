@@ -1,13 +1,9 @@
 import {atom} from 'jotai';
 
-const studentFilesAtom = atom(false);
-const facultyFilesAtom = atom(false);
-const studentOptionAtom = atom(true);
-const facultyOptionAtom = atom(true);
+const downloadablesAtom = atom({
+    state: 0,
+    files: [],
+    options: [],
+});
 
-export {
-    studentFilesAtom,
-    facultyFilesAtom,
-    studentOptionAtom,
-    facultyOptionAtom,
-};
+export {downloadablesAtom};
