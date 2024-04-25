@@ -22,10 +22,10 @@ const ForumPostModal = ({post}) => {
     const userData = useAtomValue(userDataAtom);
 
     useEffect(() => {
-        getPostDetails(post.id, userToken).then((postDetails) => {
+        getPostDetails(post.postId, userToken).then((postDetails) => {
             setComments(postDetails.comments.reverse());
-        }, userToken);
-    }, [post.id, userToken, setComments]);
+        });
+    }, [post.postId, userToken, setComments]);
 
     const goComment = async () => {
         setModal({
@@ -34,7 +34,7 @@ const ForumPostModal = ({post}) => {
             message: 'Commenting your thoughts!',
         });
         const response = await addComment(
-            post.id,
+            post.postId,
             {poster: userData.username, content: commentObject},
             userToken
         );
@@ -85,7 +85,7 @@ const ForumPostModal = ({post}) => {
                 style={ForumStyle.commentInput}
                 enterKeyHint="enter"
                 multiline
-                value={commentObject.content}
+                value={commentObject}
                 placeholder={`Write a comment...`}
                 placeholderTextColor={'gray'}
                 onChangeText={(commentInput) => {
