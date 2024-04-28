@@ -65,7 +65,11 @@
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        window.location.assign('/');
+                        if (res.success == true) {
+                            window.location.assign('/');
+                        } else {
+                            window.location.assign('/user/login');
+                        }
                     });
             });
         } catch (error) {
