@@ -51,7 +51,7 @@ const RegistrationScreen = ({navigation}) => {
     return (
         <View style={RegistrationStyle.flexView}>
             <ImageBackground
-                source={require('../assets/loginBackground.png')}
+                source={require('../assets/loginBackground.webp')}
                 resizeMode="cover"
                 style={RegistrationStyle.imageBackground}
             >

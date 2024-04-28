@@ -76,7 +76,7 @@ const ChatScreen = () => {
 
                         <View style={ChatStyle.mascotContainer}>
                             <Image
-                                source={require('../assets/chatMascot.png')}
+                                source={require('../assets/chatMascot.webp')}
                                 style={ChatStyle.chatMascot}
                             />
                         </View>

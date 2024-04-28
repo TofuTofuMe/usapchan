@@ -62,13 +62,13 @@ const LoginScreen = ({navigation}) => {
     return (
         <View style={LoginStyle.flexView}>
             <ImageBackground
-                source={require('../assets/loginBackground.png')}
+                source={require('../assets/loginBackground.webp')}
                 resizeMode="cover"
                 style={LoginStyle.imageBackground}
             >
                 <View style={LoginStyle.container}>
                     <Image
-                        source={require('../assets/loginMascot.png')}
+                        source={require('../assets/loginMascot.webp')}
                         style={LoginStyle.imageMascot}
                     />
                     <Text style={LoginStyle.headerText}>LOGIN</Text>

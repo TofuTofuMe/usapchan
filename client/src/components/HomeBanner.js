@@ -6,7 +6,7 @@ const HomeBanner = ({banner}) => {
     return (
         <View style={HomeStyle.bannerView}>
             <Image
-                source={require('../assets/homeBanner.png')}
+                source={require('../assets/homeBanner.webp')}
                 style={HomeStyle.banner}
             />
             <View style={HomeStyle.textView}>

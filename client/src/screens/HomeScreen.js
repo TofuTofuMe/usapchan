@@ -6,11 +6,11 @@ import {userDataAtom} from '../stores';
 import {useAtomValue} from 'jotai';
 
 const images = [
-    require('../assets/carousel1.jpg'),
-    require('../assets/carousel2.jpg'),
-    require('../assets/carousel3.jpg'),
-    require('../assets/carousel4.jpg'),
-    require('../assets/carousel5.jpg'),
+    require('../assets/carousel1.webp'),
+    require('../assets/carousel2.webp'),
+    require('../assets/carousel3.webp'),
+    require('../assets/carousel4.webp'),
+    require('../assets/carousel5.webp'),
 ];
 
 const HomeScreen = () => {

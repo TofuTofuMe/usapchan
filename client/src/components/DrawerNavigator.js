@@ -24,7 +24,7 @@ const DrawerNavigator = (props) => {
                     <View style={DrawerStyle.container}>
                         <View style={DrawerStyle.userInfo}>
                             <Avatar.Image
-                                source={require('../assets/hat.png')}
+                                source={require('../assets/hat.webp')}
                             />
                         </View>
                         <View style={DrawerStyle.userInfo}>

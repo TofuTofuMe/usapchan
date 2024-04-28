@@ -18,7 +18,7 @@ const HomeHighlight = ({title, date, author, body}) => {
             <View style={HomeStyle.announcementContent}>
                 <View>
                     <Image
-                        source={require('../assets/bannerAnnouncement.png')}
+                        source={require('../assets/bannerAnnouncement.webp')}
                         style={HomeStyle.announcementImage}
                     />
                     <Text style={HomeStyle.announcementTitle}>{title}</Text>
