@@ -82,7 +82,7 @@ const Tab = () => {
     return (
         <BottomTab.Navigator
             screenOptions={{
-                tabBarActiveBackgroundColor: 'rgba(55,100,75,1)',
+                tabBarActiveBackgroundColor: 'rgba(82,120,81,.85)',
                 tabBarInactiveBackgroundColor: '#526d51',
                 tabBarStyle: {
                     backgroundColor: 'white',

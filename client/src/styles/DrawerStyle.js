@@ -3,11 +3,12 @@ import {StyleSheet} from 'react-native';
 const DrawerStyle = StyleSheet.create({
     flexView: {
         flex: 1,
-        backgroundColor: 'rgba(82,109,81,.35)',
+        backgroundColor: 'rgba(214,224,217,1)',
     },
     container: {
         flex: 1,
         flexDirection: 'row',
+        marginBottom: 15,
     },
     userInfo: {
         marginLeft: 15,
@@ -17,7 +18,6 @@ const DrawerStyle = StyleSheet.create({
     },
     drawerSection: {
         flex: 1,
-        marginTop: 15,
     },
 });
 

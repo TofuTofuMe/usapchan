@@ -4,7 +4,6 @@ import {material, robotoWeights} from 'react-native-typography';
 const HomeStyle = StyleSheet.create({
     flexView: {
         flex: 1,
-        backgroundColor: '#e2e2e2',
     },
     headerImage: {
         width: '100%',
@@ -37,7 +36,9 @@ const HomeStyle = StyleSheet.create({
         fontSize: 22,
         marginBottom: 15,
         marginTop: 10,
+        paddingHorizontal: 50,
         alignSelf: 'center',
+        justifyContent: 'center',
         color: 'black',
     },
     announcementDate: {
@@ -62,7 +63,7 @@ const HomeStyle = StyleSheet.create({
         color: 'black',
     },
     textPressable: {
-        backgroundColor: '#99BC85',
+        backgroundColor: 'rgba(82,109,81,.85)',
         width: 200,
         padding: 10,
         borderRadius: 5,
@@ -79,7 +80,7 @@ const HomeStyle = StyleSheet.create({
         flex: 1,
         marginTop: 15,
         margin: 10,
-        backgroundColor: 'rgba(82,109,81,.25)',
+        backgroundColor: 'rgba(82,109,81,.85)',
         padding: 10,
         borderRadius: 10,
     },
@@ -88,15 +89,13 @@ const HomeStyle = StyleSheet.create({
         width: '55%',
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: 'rgba(82,109,81,.75)',
         paddingVertical: 5,
     },
     calendarTitle: {
         ...material.body3,
-        fontSize: 22,
-        color: 'black',
+        fontSize: 32,
+        color: 'white',
+        fontWeight: '700',
     },
     calenderRow: {
         flexDirection: 'row',
@@ -110,18 +109,19 @@ const HomeStyle = StyleSheet.create({
     calendarBox: {
         flex: 1,
         borderWidth: 2,
-        borderColor: '#526d51',
+        borderColor: 'white',
+        borderRadius: 10,
     },
     calendar: {
         flex: 1,
         alignItems: 'center',
     },
     calendarText: {
-        color: 'black',
+        color: 'rgba(255,255,255,.8)',
     },
     calendarDayText: {
         fontSize: 20,
-        color: 'black',
+        color: 'rgba(255,255,255,.8)',
     },
     carouselContainer: {
         flex: 1,

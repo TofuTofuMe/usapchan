@@ -157,8 +157,8 @@ const RegistrationScreen = ({navigation}) => {
                                     RegistrationStyle.signupPressable,
                                     {
                                         backgroundColor: pressed
-                                            ? 'white'
-                                            : 'gray',
+                                            ? 'rgba(82,109,81,.8)'
+                                            : 'rgba(82,109,81,.85)',
                                     },
                                 ]}
                                 onPress={goRegister}

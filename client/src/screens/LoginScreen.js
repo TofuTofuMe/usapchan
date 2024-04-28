@@ -105,14 +105,18 @@ const LoginScreen = ({navigation}) => {
                             style={({pressed}) => [
                                 LoginStyle.loginPressable,
                                 {
-                                    backgroundColor: pressed ? 'white' : 'gray',
+                                    backgroundColor: pressed
+                                        ? 'rgba(82,109,81,.8)'
+                                        : 'rgba(82,109,81,.85)',
                                 },
                             ]}
                             onPress={goLogin}
                         >
                             {({pressed}) => (
                                 <Text
-                                    style={{color: pressed ? 'black' : 'white'}}
+                                    style={{
+                                        color: pressed ? 'black' : 'white',
+                                    }}
                                 >
                                     Login
                                 </Text>
