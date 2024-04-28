@@ -19,7 +19,6 @@ exports.getDownloadables = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        console.log(req.body);
         const {code, title} = req.body;
         await Course.create({
             code,

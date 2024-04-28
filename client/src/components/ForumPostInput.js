@@ -81,8 +81,8 @@ const ForumPostInput = () => {
             <View style={ForumStyle.pressableRow}>
                 <Pressable style={({pressed}) => [pressed && {opacity: 0.5}]}>
                     <View style={ForumStyle.photoPressable}>
-                        <Feather name="image" size={25} color="black" />
-                        <Text style={ForumStyle.pressableText}>Add photo</Text>
+                        <Feather size={25} />
+                        <Text style={ForumStyle.pressableText} />
                     </View>
                 </Pressable>
                 <Pressable

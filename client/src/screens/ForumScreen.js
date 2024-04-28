@@ -14,7 +14,7 @@ const ForumScreen = () => {
     useEffect(() => {
         getPosts(userToken).then((post) => {
             setPosts(post.reverse());
-        }, userToken);
+        });
     }, [userToken, setPosts]);
 
     return (

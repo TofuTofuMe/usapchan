@@ -3,10 +3,10 @@ const json2md = require('json2md');
 
 const createScheduleTable = (faculty, schedules, day = NaN) => {
     if (schedules.length) {
-    if (!day) {
-        var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s overall schedule:\n`;
-    } else {
-        var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s schedule on ${day}:\n`;
+        if (!day) {
+            var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s overall schedule:\n`;
+        } else {
+            var scheduleText = `Here's ${faculty.rank} ${faculty.name}'s schedule on ${day}:\n`;
         }
     } else {
         return `${faculty.rank} ${faculty.name} does not have a schedule.`;

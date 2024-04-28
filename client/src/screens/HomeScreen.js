@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import HomeStyle from '../styles/HomeStyle';
 import {HomeHighlight, Carousel, HomeBanner} from '../components';
 import {userDataAtom} from '../stores';

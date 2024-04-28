@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {Avatar, Title, Drawer, Section} from 'react-native-paper';
+import {Avatar, Title, Drawer} from 'react-native-paper';
 import DrawerStyle from '../styles/DrawerStyle';
 import {loginStateAtom, userDataAtom, userTokenAtom} from '../stores';
 import {useAtom, useSetAtom} from 'jotai';

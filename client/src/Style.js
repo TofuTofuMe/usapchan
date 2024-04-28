@@ -12,7 +12,6 @@ const Style = StyleSheet.create({
     },
     bodyView: {
         flex: 1,
-        flexDirection: 'row',
         padding: 15,
         marginLeft: 15,
         marginRight: 15,
@@ -20,10 +19,6 @@ const Style = StyleSheet.create({
     bottomView: {
         flexDirection: 'row',
         marginTop: 'auto',
-    },
-    inputContainer: {
-        flex: 1,
-        marginBottom: 5,
     },
     welcomeText: {
         ...robotoWeights.condensed,
@@ -89,34 +84,9 @@ const Style = StyleSheet.create({
         ...material.button,
         color: 'white',
     },
-    textInput: {
-        backgroundColor: materialColors.whiteSecondary,
-        borderBottomWidth: 0.75,
-        color: materialColors.blackPrimary,
-        marginTop: 5,
-        margin: 10,
-        padding: 10,
-        color: 'black',
-    },
     title: {
         ...material.title,
         color: materialColors.blackPrimary,
-    },
-    navText: {
-        fontFamily: material.button,
-    },
-    chatBubble: {
-        padding: 5,
-        margin: 10,
-        marginTop: 5,
-        marginBottom: 5,
-        borderRadius: 15,
-        backgroundColor: materialColors.whiteSecondary,
-        alignSelf: 'flex-start',
-    },
-    userBubble: {
-        backgroundColor: 'skyblue',
-        alignSelf: 'flex-end',
     },
     postView: {
         flex: 1,
@@ -130,101 +100,6 @@ const Style = StyleSheet.create({
         },
         marginTop: 15,
         padding: 10,
-    },
-    postUsername: {
-        ...material.subheading,
-        fontWeight: 'bold',
-    },
-    postText: {
-        padding: 15,
-        paddingLeft: 10,
-        paddingBottom: 5,
-        color: materialColors.blackPrimary,
-    },
-    featherText: {
-        ...material.body2,
-        padding: 3,
-    },
-    lightTheme: {
-        backgroundColor: 'white',
-    },
-    darkTheme: {
-        backgroundColor: 'black',
-    },
-    flexView: {
-        flex: 1,
-    },
-    body: {
-        flex: 1,
-        height: 500,
-        padding: 50,
-        marginTop: 100,
-        textAlign: 'justify',
-    },
-    bodyContainer: {
-        flexDirection: 'row',
-        flex: 1,
-    },
-    bodyContent: {
-        flexDirection: 'row',
-    },
-    bodyText: {
-        width: '65%',
-        marginLeft: -20,
-        ...material.body2,
-        fontWeight: 'bold',
-        fontSize: 26,
-        lineHeight: 30,
-        textAlign: 'center',
-    },
-    mascotContainer: {
-        flex: 1,
-        position: 'absolute',
-        marginLeft: 100,
-        marginTop: 50,
-    },
-    bottom: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bottomText: {
-        ...material.body2,
-        fontSize: 22,
-    },
-    chatPicture: {
-        width: '70%',
-        resizeMode: 'contain',
-        marginTop: -100,
-    },
-    body: {
-        flex: 1,
-        width: 350,
-        height: 500,
-        padding: 50,
-        marginTop: 100,
-        textAlign: 'justify',
-    },
-    bodyText: {
-        ...material.body2,
-        fontWeight: 'bold',
-        fontSize: 26,
-        lineHeight: 30,
-    },
-    chatMascot: {
-        width: 300,
-        height: 300,
-        resizeMode: 'contain',
-        position: 'absolute',
-    },
-    bottom: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bottomText: {
-        ...material.body2,
-        fontSize: 22,
     },
 });
 
