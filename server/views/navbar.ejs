@@ -13,4 +13,9 @@
         <a class="p-2" href="/chat/manage">Chat</a>
         <a class="p-2" href="/">Settings</a>
     </div>
+    <% if (locals.login) { %>
+    <div class="font-semibold ml-auto">
+        <a class="p-2" href="/user/logout">Logout</a>
+    </div>
+    <% } %>
 </div>

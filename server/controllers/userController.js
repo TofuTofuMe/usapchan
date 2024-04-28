@@ -147,3 +147,12 @@ exports.renderLogin = async (req, res) => {
         console.error(error.message);
     }
 };
+
+exports.logoutUser = async (req, res) => {
+    try {
+        res.status(200).clearCookie('token').redirect('/user/login');
+    } catch (error) {
+        res.status(500).end();
+        console.error(error.message);
+    }
+};
