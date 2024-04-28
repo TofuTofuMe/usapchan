@@ -3,11 +3,11 @@ import {atom} from 'jotai';
 const selectedPostAtom = atom(null);
 
 const postInputAtom = atom({
-    poster: '',
-    title: '',
-    content: '',
+    poster: null,
+    title: null,
+    content: null,
 });
-const commentInputAtom = atom('');
+const commentInputAtom = atom(null);
 
 const postsAtom = atom([]);
 const commentsAtom = atom([]);
