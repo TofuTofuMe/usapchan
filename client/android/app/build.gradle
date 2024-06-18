@@ -111,6 +111,12 @@ android {
             }
         }
     }
+    applicationVariants.all {variant ->
+        def calVer = new Date().format('yy.MM.dd')
+        variant.outputs.all {
+            outputFileName = "${variant.applicationId}_${calVer}.apk"
+        }
+    }
 }
 
 dependencies {
