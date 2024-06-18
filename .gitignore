@@ -1,0 +1,9 @@
+server/db/usapchan.db
+server/utils/collegeModel.nlp
+server/assets/downloadables
+server/assets/images
+client/src/assets
+.vscode
+*.bak.*
+*.env.*
+*.nlp
